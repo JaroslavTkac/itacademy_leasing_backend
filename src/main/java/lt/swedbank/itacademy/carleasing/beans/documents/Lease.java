@@ -9,8 +9,8 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Document(collection = "leasing")
-public class Leasing {
+@Document(collection = "leases")
+public class Lease {
 
     @Id
     private ObjectId id;
@@ -54,7 +54,7 @@ public class Leasing {
 
     private List errorCodes;
 
-    public Leasing(){
+    public Lease(){
 
     }
 

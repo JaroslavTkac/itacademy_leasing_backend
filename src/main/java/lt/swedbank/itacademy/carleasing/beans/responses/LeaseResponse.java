@@ -1,11 +1,11 @@
 package lt.swedbank.itacademy.carleasing.beans.responses;
 
-import lt.swedbank.itacademy.carleasing.beans.documents.Leasing;
+import lt.swedbank.itacademy.carleasing.beans.documents.Lease;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-public class LeasingResponse extends Response {
+public class LeaseResponse extends Response {
     private String id;
     private String assetType;
     private String carBrand;
@@ -22,21 +22,21 @@ public class LeasingResponse extends Response {
     private List errorCodes;
 
 
-    public LeasingResponse(Leasing leasing){
-        setId(String.valueOf(leasing.getId()));
-        setAssetType(leasing.getAssetType());
-        setCarBrand(leasing.getCarBrand());
-        setCarModel(leasing.getCarModel());
-        setYears(leasing.getYears());
-        setEnginePower(leasing.getEnginePower());
-        setAssetPrice(leasing.getAssetPrice());
-        setAdvancePaymentPercentage(leasing.getAdvancePaymentPercentage());
-        setLeasePeriod(leasing.getLeasePeriod());
-        setMargin(leasing.getMargin());
-        setContractFee(leasing.getContractFee());
-        setPaymentDate(leasing.getPaymentDate());
-        setAdvancePaymentAmount(leasing.getAdvancePaymentAmount());
-        setErrorCodes(leasing.getErrorCodes());
+    public LeaseResponse(Lease lease){
+        setId(String.valueOf(lease.getId()));
+        setAssetType(lease.getAssetType());
+        setCarBrand(lease.getCarBrand());
+        setCarModel(lease.getCarModel());
+        setYears(lease.getYears());
+        setEnginePower(lease.getEnginePower());
+        setAssetPrice(lease.getAssetPrice());
+        setAdvancePaymentPercentage(lease.getAdvancePaymentPercentage());
+        setLeasePeriod(lease.getLeasePeriod());
+        setMargin(lease.getMargin());
+        setContractFee(lease.getContractFee());
+        setPaymentDate(lease.getPaymentDate());
+        setAdvancePaymentAmount(lease.getAdvancePaymentAmount());
+        setErrorCodes(lease.getErrorCodes());
     }
 
     public String getId() {

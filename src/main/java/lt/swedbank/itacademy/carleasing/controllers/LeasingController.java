@@ -1,8 +1,8 @@
 package lt.swedbank.itacademy.carleasing.controllers;
 
-import lt.swedbank.itacademy.carleasing.beans.documents.Leasing;
-import lt.swedbank.itacademy.carleasing.beans.responses.LeasingResponse;
-import lt.swedbank.itacademy.carleasing.services.LeasingService;
+import lt.swedbank.itacademy.carleasing.beans.documents.Lease;
+import lt.swedbank.itacademy.carleasing.beans.responses.LeaseResponse;
+import lt.swedbank.itacademy.carleasing.services.LeaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,20 +16,21 @@ public class LeasingController {
 
 
     @Autowired
-    private LeasingService leasingService;
+    private LeaseService leaseService;
 
 
     //GET
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<LeasingResponse> getAllLeasings(){
-       return leasingService.getAllLeasings();
+    public List<LeaseResponse> getAllLeasings(){
+       return leaseService.getAllLeasings();
     }
 
     //ADD
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public LeasingResponse addLeasing(@Valid @RequestBody Leasing leasing){
-        return new LeasingResponse(leasingService.addNewLeasing(leasing));
+    public LeaseResponse addLeasing(@Valid @RequestBody Lease lease){
+        return new LeaseResponse(leaseService.addNewLeasing(lease));
     }
+
 
 
 }

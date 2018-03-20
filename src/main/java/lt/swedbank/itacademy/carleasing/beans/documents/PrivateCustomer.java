@@ -5,9 +5,10 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
-@Document(collection = "temp_users")
-public class PreparedUser {
+@Document(collection = "private_customers")
+public class PrivateCustomer {
 
     @Id
     private ObjectId id;
@@ -29,6 +30,8 @@ public class PreparedUser {
 
     @NotNull
     private String address;
+
+    private List errorCodes;
 
     public ObjectId getId() {
         return id;
@@ -74,15 +77,23 @@ public class PreparedUser {
         return phoneNumber;
     }
 
-    public void setPhoneNumberr(String number) {
-        this.phoneNumber = number;
-    }
-
     public String getAddress() {
         return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public List getErrorCodes() {
+        return errorCodes;
+    }
+
+    public void setErrorCodes(List errorCodes) {
+        this.errorCodes = errorCodes;
     }
 }

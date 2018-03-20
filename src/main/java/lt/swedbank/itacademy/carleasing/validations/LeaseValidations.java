@@ -1,6 +1,7 @@
 package lt.swedbank.itacademy.carleasing.validations;
 
-public class LeasingValidations {
+public class LeaseValidations extends Validation{
+
 
 
 

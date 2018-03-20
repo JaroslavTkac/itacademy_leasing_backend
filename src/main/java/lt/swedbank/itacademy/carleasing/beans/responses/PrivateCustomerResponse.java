@@ -1,8 +1,8 @@
 package lt.swedbank.itacademy.carleasing.beans.responses;
 
-import lt.swedbank.itacademy.carleasing.beans.documents.User;
+import lt.swedbank.itacademy.carleasing.beans.documents.PrivateCustomer;
 
-public class UserResponse extends Response {
+public class PrivateCustomerResponse extends Response {
     private Object id;
     private String firstName;
     private String lastName;
@@ -12,8 +12,13 @@ public class UserResponse extends Response {
     private String address;
 
 
-    UserResponse(User user){
-
+    public PrivateCustomerResponse(PrivateCustomer privateCustomer){
+        setId(String.valueOf(privateCustomer.getId()));
+        setFirstName(privateCustomer.getFirstName());
+        setLastName(privateCustomer.getLastName());
+        setEmail(privateCustomer.getEmail());
+        setPhoneNumber(privateCustomer.getPhoneNumber());
+        setAddress(privateCustomer.getAddress());
     }
 
     public Object getId() {
