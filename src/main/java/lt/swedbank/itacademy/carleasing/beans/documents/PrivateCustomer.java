@@ -4,6 +4,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class PrivateCustomer {
     private String personalCode;
 
     @NotNull
+    @Email
     private String email;
 
     @NotNull
