@@ -1,39 +1,36 @@
 package lt.swedbank.itacademy.carleasing.beans.documents;
 
-import lt.swedbank.itacademy.carleasing.beans.responses.CarBrandResponse;
-import lt.swedbank.itacademy.carleasing.beans.responses.CarModelResponse;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Car {
 
-    private CarBrandResponse carBrand;  //BMW, Audi, Subaru etc...
-    private List<CarModelResponse>  carModel; //A1, 525, Forester
+    private CarBrand carBrand;
+    private List<CarModel>  carModel;
 
 
-    public Car(CarBrandResponse carBrand, List<CarModelResponse> carModels){
+    Car(CarBrand carBrand, List<CarModel> carModels){
         setCarModel(new ArrayList<>());
         setCarBrand(carBrand);
 
-        for (CarModelResponse model: carModels){
+        for (CarModel model: carModels){
             carModel.add(model);
         }
     }
 
-    public CarBrandResponse getCarBrand() {
+    public CarBrand getCarBrand() {
         return carBrand;
     }
 
-    public void setCarBrand(CarBrandResponse carBrand) {
+    public void setCarBrand(CarBrand carBrand) {
         this.carBrand = carBrand;
     }
 
-    public List<CarModelResponse> getCarModel() {
+    public List<CarModel> getCarModel() {
         return carModel;
     }
 
-    public void setCarModel(List<CarModelResponse> carModel) {
+    public void setCarModel(List<CarModel> carModel) {
         this.carModel = carModel;
     }
 }

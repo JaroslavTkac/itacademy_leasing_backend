@@ -9,10 +9,4 @@ import java.util.List;
 public interface CarBrandRepository extends CrudRepository<CarBrand, String> {
 
     List<CarBrand> findAll();
-
-    CarBrand findCarBrandsByBrand(String brand);
-
-    CarBrand findCarBrandsById(String id);
-
-    void deleteCarBrandsByBrand(String brand);
 }

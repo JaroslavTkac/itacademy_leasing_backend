@@ -1,5 +1,6 @@
 package lt.swedbank.itacademy.carleasing.services;
 
+<<<<<<< HEAD
 import lt.swedbank.itacademy.carleasing.beans.documents.CarBrand;
 import lt.swedbank.itacademy.carleasing.beans.documents.CarModel;
 import lt.swedbank.itacademy.carleasing.beans.documents.Car;
@@ -8,6 +9,10 @@ import lt.swedbank.itacademy.carleasing.beans.responses.CarModelResponse;
 import lt.swedbank.itacademy.carleasing.repositories.CarBrandRepository;
 import lt.swedbank.itacademy.carleasing.repositories.CarModelRepository;
 import org.bson.types.ObjectId;
+=======
+import lt.swedbank.itacademy.carleasing.repositories.CarBrandRepository;
+import lt.swedbank.itacademy.carleasing.repositories.CarModelRepository;
+>>>>>>> backend-skeleton-addons
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +28,7 @@ public class CarsService {
 
     @Autowired
     private CarModelRepository carModelRepository;
+<<<<<<< HEAD
 
 
     public List<Car> getAllCars() {
@@ -189,6 +195,8 @@ public class CarsService {
         //Volkswagen
         brandId = new ObjectId();
         carBrandRepository.save(new CarBrand(brandId, "Volkswagen"));
+=======
+>>>>>>> backend-skeleton-addons
 
         carModelRepository.save(new CarModel(new ObjectId(), "Passat", brandId));
         carModelRepository.save(new CarModel(new ObjectId(), "CC", brandId));
