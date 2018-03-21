@@ -33,6 +33,7 @@ public class PrivateCustomerService extends lt.swedbank.itacademy.carleasing.ser
 
         //TODO validatorius
         //errorCodes.add(validations.validateAssetType(lease.getAssetType()));
+        errorCodes.add(validations.validateName(privateCustomer.getFirstName()));
 
         //Checking is there any errors
         List<Integer> actualErrors = validations.checkForActualError(errorCodes);
@@ -61,6 +62,7 @@ public class PrivateCustomerService extends lt.swedbank.itacademy.carleasing.ser
             newPrivateCustomer.setLastName(privateCustomer.getLastName());
             newPrivateCustomer.setPersonalCode(privateCustomer.getPersonalCode());
             newPrivateCustomer.setPhoneNumber(privateCustomer.getPhoneNumber());
+            newPrivateCustomer.setErrorCodes(errorCodes);
         }
         else{
             newPrivateCustomer.setAddress("");
@@ -69,6 +71,7 @@ public class PrivateCustomerService extends lt.swedbank.itacademy.carleasing.ser
             newPrivateCustomer.setLastName("");
             newPrivateCustomer.setPersonalCode("");
             newPrivateCustomer.setPhoneNumber("");
+            newPrivateCustomer.setErrorCodes(errorCodes);
         }
         return newPrivateCustomer;
     }

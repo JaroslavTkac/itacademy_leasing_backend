@@ -2,6 +2,8 @@ package lt.swedbank.itacademy.carleasing.beans.responses;
 
 import lt.swedbank.itacademy.carleasing.beans.documents.PrivateCustomer;
 
+import java.util.List;
+
 public class PrivateCustomerResponse extends Response {
     private Object id;
     private String firstName;
@@ -10,6 +12,7 @@ public class PrivateCustomerResponse extends Response {
     private String email;
     private String phoneNumber;
     private String address;
+    private List errorCodes;
 
 
     public PrivateCustomerResponse(PrivateCustomer privateCustomer){
@@ -20,6 +23,7 @@ public class PrivateCustomerResponse extends Response {
         setPhoneNumber(privateCustomer.getPhoneNumber());
         setAddress(privateCustomer.getAddress());
         setPersonalCode(privateCustomer.getPersonalCode());
+        setErrorCodes(privateCustomer.getErrorCodes());
     }
 
     public Object getId() {
@@ -76,5 +80,13 @@ public class PrivateCustomerResponse extends Response {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public List getErrorCodes() {
+        return errorCodes;
+    }
+
+    public void setErrorCodes(List errorCodes) {
+        this.errorCodes = errorCodes;
     }
 }
