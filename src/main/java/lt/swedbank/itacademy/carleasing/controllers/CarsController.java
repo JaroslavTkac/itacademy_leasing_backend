@@ -1,14 +1,12 @@
 package lt.swedbank.itacademy.carleasing.controllers;
 
 
-import lt.swedbank.itacademy.carleasing.beans.documents.CarModels;
-import lt.swedbank.itacademy.carleasing.beans.documents.Cars;
+import lt.swedbank.itacademy.carleasing.beans.documents.Car;
+import lt.swedbank.itacademy.carleasing.beans.responses.CarBrandResponse;
+import lt.swedbank.itacademy.carleasing.beans.responses.CarModelResponse;
 import lt.swedbank.itacademy.carleasing.services.CarsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,34 +24,35 @@ public class CarsController {
 
     //GET
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Cars> getAllCars(){
+    public List<Car> getAllCars() {
         // carService.getModels
         // carService.getBrands
-        return null;
-        //return carsService.getAllPrivateCustomers();
+        return carsService.getAllCars();
     }
 
-    //GET
-    @RequestMapping(value = "/model/id", method = RequestMethod.GET)
-    public CarModels getCarModelById(){
-        return null;
-    }
 
     //GET
-    @RequestMapping(value = "/brand/id", method = RequestMethod.GET)
-    public CarModels getCarBrandById(){
-        return null;
+    @RequestMapping(value = "/brands", method = RequestMethod.GET)
+    public List<CarBrandResponse> getAllBrands() {
+        return carsService.getAllBrands();
+    }
+
+
+    //GET
+    @RequestMapping(value = "/brand/{name}", method = RequestMethod.GET)
+    public List<CarModelResponse> getAllModelsByBrand(@PathVariable("name") String brandName) {
+        return carsService.getAllModelsByBrand(brandName);
     }
 
 
     //POST
-    @RequestMapping(value = "/postall", method = RequestMethod.POST)
-    public String initMongoDataBaseWithDefaultCars(){
+    @RequestMapping(value = "/initcars", method = RequestMethod.POST)
+    public String initMongoDataBaseWithDefaultCars() {
         //1 Wiping all current data
-
+        carsService.wipeAllData();
         //2 Pushing data to db
+        carsService.initializeCars();
 
-
-        return "OK";
+        return "{\n\"status\": \"OK\"\n}";
     }
 }

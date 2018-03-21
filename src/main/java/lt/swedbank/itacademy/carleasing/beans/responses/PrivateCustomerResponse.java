@@ -19,6 +19,7 @@ public class PrivateCustomerResponse extends Response {
         setEmail(privateCustomer.getEmail());
         setPhoneNumber(privateCustomer.getPhoneNumber());
         setAddress(privateCustomer.getAddress());
+        setPersonalCode(privateCustomer.getPersonalCode());
     }
 
     public Object getId() {
