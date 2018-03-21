@@ -1,7 +1,7 @@
 package lt.swedbank.itacademy.carleasing.services;
 
-import lt.swedbank.itacademy.carleasing.repositories.CarBrandsRepository;
-import lt.swedbank.itacademy.carleasing.repositories.CarModelsRepository;
+import lt.swedbank.itacademy.carleasing.repositories.CarBrandRepository;
+import lt.swedbank.itacademy.carleasing.repositories.CarModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 public class CarsService {
 
     @Autowired
-    private CarBrandsRepository carBrandsRepository;
+    private CarBrandRepository carBrandRepository;
 
     @Autowired
-    private CarModelsRepository carModelsRepository;
+    private CarModelRepository carModelRepository;
 
 
 

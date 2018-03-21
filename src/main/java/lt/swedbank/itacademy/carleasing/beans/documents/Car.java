@@ -3,34 +3,34 @@ package lt.swedbank.itacademy.carleasing.beans.documents;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cars {
+public class Car {
 
-    private CarBrands carBrand;
-    private List<CarModels>  carModel;
+    private CarBrand carBrand;
+    private List<CarModel>  carModel;
 
 
-    Cars(CarBrands carBrand, List<CarModels> carModels){
+    Car(CarBrand carBrand, List<CarModel> carModels){
         setCarModel(new ArrayList<>());
         setCarBrand(carBrand);
 
-        for (CarModels model: carModels){
+        for (CarModel model: carModels){
             carModel.add(model);
         }
     }
 
-    public CarBrands getCarBrand() {
+    public CarBrand getCarBrand() {
         return carBrand;
     }
 
-    public void setCarBrand(CarBrands carBrand) {
+    public void setCarBrand(CarBrand carBrand) {
         this.carBrand = carBrand;
     }
 
-    public List<CarModels> getCarModel() {
+    public List<CarModel> getCarModel() {
         return carModel;
     }
 
-    public void setCarModel(List<CarModels> carModel) {
+    public void setCarModel(List<CarModel> carModel) {
         this.carModel = carModel;
     }
 }

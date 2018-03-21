@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.NotNull;
 
 @Document(collection = "car_models")
-public class CarModels {
+public class CarModel {
 
     @Id
     private ObjectId id;

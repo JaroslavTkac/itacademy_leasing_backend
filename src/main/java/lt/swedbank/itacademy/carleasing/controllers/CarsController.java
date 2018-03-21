@@ -1,8 +1,8 @@
 package lt.swedbank.itacademy.carleasing.controllers;
 
 
-import lt.swedbank.itacademy.carleasing.beans.documents.CarModels;
-import lt.swedbank.itacademy.carleasing.beans.documents.Cars;
+import lt.swedbank.itacademy.carleasing.beans.documents.CarModel;
+import lt.swedbank.itacademy.carleasing.beans.documents.Car;
 import lt.swedbank.itacademy.carleasing.services.CarsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,7 +26,7 @@ public class CarsController {
 
     //GET
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Cars> getAllCars(){
+    public List<Car> getAllCars(){
         // carService.getModels
         // carService.getBrands
         return null;
@@ -35,13 +35,13 @@ public class CarsController {
 
     //GET
     @RequestMapping(value = "/model/id", method = RequestMethod.GET)
-    public CarModels getCarModelById(){
+    public CarModel getCarModelById(){
         return null;
     }
 
     //GET
     @RequestMapping(value = "/brand/id", method = RequestMethod.GET)
-    public CarModels getCarBrandById(){
+    public CarModel getCarBrandById(){
         return null;
     }
 

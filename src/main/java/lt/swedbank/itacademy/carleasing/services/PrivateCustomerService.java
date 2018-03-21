@@ -34,7 +34,9 @@ public class PrivateCustomerService extends lt.swedbank.itacademy.carleasing.ser
 
         //TODO validatorius
         //errorCodes.add(validations.validateAssetType(lease.getAssetType()));
-        if(validations.validateName(privateCustomer.getFirstName())!=0)errorCodes.add(validations.validateName(privateCustomer.getFirstName()));
+        if(validations.validateName(privateCustomer.getFirstName())!=0) {
+            errorCodes.add(validations.validateName(privateCustomer.getFirstName()));
+        }
        // if(validations.validateName(privateCustomer.getEmail())!=0)errorCodes.add(validations.validateEmail(privateCustomer.getEmail()));
         //Checking is there any errors
         List<Integer> actualErrors = validations.checkForActualError(errorCodes);
