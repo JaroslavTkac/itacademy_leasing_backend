@@ -30,8 +30,19 @@ public class LeaseService extends lt.swedbank.itacademy.carleasing.services.Serv
         errorCodes = new ArrayList<>();
 
 
-        //TODO validatorius
-        //errorCodes.add(validations.validateAssetType(lease.getAssetType()));
+        errorCodes.add(validations.validateAssetType(lease.getAssetType()));
+        errorCodes.add(validations.validateCarBrand(lease.getCarBrand()));
+        errorCodes.add(validations.validateCarModel(lease.getCarModel()));
+        errorCodes.add(validations.validateYears(lease.getYears()));
+        errorCodes.add(validations.validateEnginePower(lease.getEnginePower()));
+        errorCodes.add(validations.validateAssetPrice(lease.getAssetPrice()));
+        errorCodes.add(validations.validateAdvancePaymentAmount(lease.getAdvancePaymentAmount(), lease.getAdvancePaymentPercentage(),
+                                                                lease.getAssetPrice()));
+        errorCodes.add(validations.validateAdvancePaymentPercentage(lease.getAdvancePaymentPercentage()));
+        errorCodes.add(validations.validateLeasePeriod(lease.getLeasePeriod()));
+        errorCodes.add(validations.validateMargin(lease.getMargin()));
+        errorCodes.add(validations.validatePaymentDate(lease.getPaymentDate()));
+        errorCodes.add(validations.validateContractFee(lease.getContractFee(), lease.getAssetPrice()));
 
         //Checking is there any errors
         List<Integer> actualErrors = validations.checkForActualError(errorCodes);
