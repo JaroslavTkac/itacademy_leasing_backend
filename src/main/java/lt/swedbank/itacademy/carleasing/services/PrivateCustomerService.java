@@ -55,20 +55,9 @@ public class PrivateCustomerService extends lt.swedbank.itacademy.carleasing.ser
         newPrivateCustomer.setErrorCodes(errorCodes);
         newPrivateCustomer.setId(new ObjectId());
         if(newPrivateCustomer.getErrorCodes().size() == 0) {
-            newPrivateCustomer.setAddress(privateCustomer.getAddress());
-            newPrivateCustomer.setEmail(privateCustomer.getEmail());
-            newPrivateCustomer.setFirstName(privateCustomer.getFirstName());
-            newPrivateCustomer.setLastName(privateCustomer.getLastName());
-            newPrivateCustomer.setPersonalCode(privateCustomer.getPersonalCode());
-            newPrivateCustomer.setPhoneNumber(privateCustomer.getPhoneNumber());
+
         }
         else{
-            newPrivateCustomer.setAddress("");
-            newPrivateCustomer.setEmail("");
-            newPrivateCustomer.setFirstName("");
-            newPrivateCustomer.setLastName("");
-            newPrivateCustomer.setPersonalCode("");
-            newPrivateCustomer.setPhoneNumber("");
 
         }
         return newPrivateCustomer;
