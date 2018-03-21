@@ -21,7 +21,6 @@ public class PrivateCustomerService extends lt.swedbank.itacademy.carleasing.ser
     private PrivateCustomerValidations validations;
 
 
-
     public List<PrivateCustomerResponse> getAllPrivateCustomers() {
         return repository.findAll().stream().map(PrivateCustomerResponse::new).collect(Collectors.toList());
     }
@@ -34,12 +33,10 @@ public class PrivateCustomerService extends lt.swedbank.itacademy.carleasing.ser
 
         //TODO validatorius
         //errorCodes.add(validations.validateAssetType(lease.getAssetType()));
-        if(validations.validateName(privateCustomer.getFirstName())!=0) {
-            errorCodes.add(validations.validateName(privateCustomer.getFirstName()));
-        }
-       // if(validations.validateName(privateCustomer.getEmail())!=0)errorCodes.add(validations.validateEmail(privateCustomer.getEmail()));
+
         //Checking is there any errors
         List<Integer> actualErrors = validations.checkForActualError(errorCodes);
+
         if(actualErrors.size() == 0) {
             //if no errors
             //saving to DB
@@ -58,21 +55,12 @@ public class PrivateCustomerService extends lt.swedbank.itacademy.carleasing.ser
         newPrivateCustomer.setErrorCodes(errorCodes);
         newPrivateCustomer.setId(new ObjectId());
         if(newPrivateCustomer.getErrorCodes().size() == 0) {
-<<<<<<< HEAD
             newPrivateCustomer.setAddress(privateCustomer.getAddress());
             newPrivateCustomer.setEmail(privateCustomer.getEmail());
             newPrivateCustomer.setFirstName(privateCustomer.getFirstName());
             newPrivateCustomer.setLastName(privateCustomer.getLastName());
             newPrivateCustomer.setPersonalCode(privateCustomer.getPersonalCode());
             newPrivateCustomer.setPhoneNumber(privateCustomer.getPhoneNumber());
-=======
-                newPrivateCustomer.setAddress(privateCustomer.getAddress());
-                newPrivateCustomer.setEmail(privateCustomer.getEmail());
-                newPrivateCustomer.setFirstName(privateCustomer.getFirstName());
-                newPrivateCustomer.setLastName(privateCustomer.getLastName());
-                newPrivateCustomer.setPersonalCode(privateCustomer.getPersonalCode());
-                newPrivateCustomer.setPhoneNumber(privateCustomer.getPhoneNumber());
->>>>>>> backend-skeleton-addons
         }
         else{
             newPrivateCustomer.setAddress("");

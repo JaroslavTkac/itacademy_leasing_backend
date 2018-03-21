@@ -16,7 +16,6 @@ public class PrivateCustomerResponse extends Response {
         setId(String.valueOf(privateCustomer.getId()));
         setFirstName(privateCustomer.getFirstName());
         setLastName(privateCustomer.getLastName());
-        setPersonalCode(privateCustomer.getPersonalCode());
         setEmail(privateCustomer.getEmail());
         setPhoneNumber(privateCustomer.getPhoneNumber());
         setAddress(privateCustomer.getAddress());
