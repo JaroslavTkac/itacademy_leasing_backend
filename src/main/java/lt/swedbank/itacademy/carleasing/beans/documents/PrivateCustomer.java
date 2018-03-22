@@ -1,5 +1,6 @@
 package lt.swedbank.itacademy.carleasing.beans.documents;
 
+import lt.swedbank.itacademy.carleasing.validations.constraints.privatecustomer.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,21 +15,27 @@ public class PrivateCustomer {
     private ObjectId id;
 
     @NotNull
+    @NameConstraint
     private String firstName;
 
     @NotNull
+    @NameConstraint
     private String lastName;
 
     @NotNull
+    @PersonalCodeConstraint
     private String personalCode;
 
     @NotNull
+    @EmailConstraint
     private String email;
 
     @NotNull
+    @PhoneNumberConstraint
     private String phoneNumber;
 
     @NotNull
+    @AddressConstraint
     private String address;
 
     private List errorCodes;

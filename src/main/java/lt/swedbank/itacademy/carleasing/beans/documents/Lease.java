@@ -1,10 +1,12 @@
 package lt.swedbank.itacademy.carleasing.beans.documents;
 
 
+import lt.swedbank.itacademy.carleasing.validations.constraints.lease.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
@@ -19,36 +21,52 @@ public class Lease {
     private String assetType;
 
     @NotNull
+    @NotEmpty
     private String carBrand;
 
     @NotNull
+    @NotEmpty
     private String carModel;
 
     @NotNull
+    @YearsConstraint
     private String years;
 
     @NotNull
+    @IntegerMismatchConstraint
+    @EnginePowerConstraint
     private int enginePower;
 
     @NotNull
+    //@FloatMismatchConstraint
+    @AssetPriceConstraint
     private BigDecimal assetPrice;
 
     @NotNull
+    //@FloatMismatchConstraint
+    @AdvancePaymentPercentageConstraint
     private float advancePaymentPercentage;
 
     @NotNull
+    //@FloatMismatchConstraint
     private BigDecimal advancePaymentAmount;
 
     @NotNull
+    //@LeasePeriodConstraint
     private int leasePeriod;
 
     @NotNull
+    //@FloatMismatchConstraint
+    @MarginConstraint
     private float margin;
 
     @NotNull
+    //@FloatMismatchConstraint
     private BigDecimal contractFee;
 
     @NotNull
+    //@IntegerMismatchConstraint
+    @PaymentDateConstraint
     private int paymentDate;
 
 

@@ -25,6 +25,11 @@ public class LeasingController {
        return leaseService.getAllLeasings();
     }
 
+
+    //GET
+    //lease and customer who assigned to that lease
+
+
     //ADD
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public LeaseResponse addLeasing(@Valid @RequestBody Lease lease){

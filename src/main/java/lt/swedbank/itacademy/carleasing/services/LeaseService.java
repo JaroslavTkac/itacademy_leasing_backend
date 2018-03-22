@@ -19,29 +19,18 @@ public class LeaseService extends lt.swedbank.itacademy.carleasing.services.Serv
     @Autowired
     private LeaseRepository repository;
 
-    private LeaseValidations validations;
-
     public List<LeaseResponse> getAllLeasings() {
         return repository.findAll().stream().map(LeaseResponse::new).collect(Collectors.toList());
     }
 
     public Lease addNewLeasing(Lease lease) {
-        validations = new LeaseValidations();
+        LeaseValidations validations = new LeaseValidations();
         errorCodes = new ArrayList<>();
 
 
         errorCodes.add(validations.validateAssetType(lease.getAssetType()));
-        errorCodes.add(validations.validateCarBrand(lease.getCarBrand()));
-        errorCodes.add(validations.validateCarModel(lease.getCarModel()));
-        errorCodes.add(validations.validateYears(lease.getYears()));
-        errorCodes.add(validations.validateEnginePower(lease.getEnginePower()));
-        errorCodes.add(validations.validateAssetPrice(lease.getAssetPrice()));
         errorCodes.add(validations.validateAdvancePaymentAmount(lease.getAdvancePaymentAmount(), lease.getAdvancePaymentPercentage(),
                                                                 lease.getAssetPrice()));
-        errorCodes.add(validations.validateAdvancePaymentPercentage(lease.getAdvancePaymentPercentage()));
-        errorCodes.add(validations.validateLeasePeriod(lease.getLeasePeriod()));
-        errorCodes.add(validations.validateMargin(lease.getMargin()));
-        errorCodes.add(validations.validatePaymentDate(lease.getPaymentDate()));
         errorCodes.add(validations.validateContractFee(lease.getContractFee(), lease.getAssetPrice()));
 
         //Checking is there any errors
