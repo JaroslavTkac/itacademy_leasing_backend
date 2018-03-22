@@ -10,7 +10,7 @@ public class PersonalCodeValidator implements
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return !value.isEmpty() && value.matches("[0-9]+");
+        return !value.isEmpty() && value.length()==11 &&value.matches("[0-9]+");
     }
 
     @Override
