@@ -19,7 +19,7 @@ public class PrivateCustomerService {
     public List<PrivateCustomerResponse> getAllPrivateCustomers() {
         return repository.findAll().stream().map(PrivateCustomerResponse::new).collect(Collectors.toList());
     }
-    
+
 
     public PrivateCustomer addNewPrivateCustomer(PrivateCustomer privateCustomer) {
         PrivateCustomer newPrivateCustomer = new PrivateCustomer();
@@ -33,7 +33,7 @@ public class PrivateCustomerService {
         newPrivateCustomer.setPersonalCode(privateCustomer.getPersonalCode());
         newPrivateCustomer.setPhoneNumber(privateCustomer.getPhoneNumber());
 
-        return newPrivateCustomer;
+        return repository.save(newPrivateCustomer);
     }
 
 }
