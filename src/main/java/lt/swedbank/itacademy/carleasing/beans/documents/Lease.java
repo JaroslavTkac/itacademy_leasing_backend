@@ -33,39 +33,32 @@ public class Lease {
     private String years;
 
     @NotNull
-    @IntegerMismatchConstraint
     @EnginePowerConstraint
     private int enginePower;
 
     @NotNull
-    //@FloatMismatchConstraint
     @AssetPriceConstraint
     private BigDecimal assetPrice;
 
     @NotNull
-    //@FloatMismatchConstraint
     @AdvancePaymentPercentageConstraint
     private float advancePaymentPercentage;
 
     @NotNull
-    //@FloatMismatchConstraint
     private BigDecimal advancePaymentAmount;
 
     @NotNull
-    //@LeasePeriodConstraint
+    @LeasePeriodConstraint
     private int leasePeriod;
 
     @NotNull
-    //@FloatMismatchConstraint
     @MarginConstraint
     private float margin;
 
     @NotNull
-    //@FloatMismatchConstraint
     private BigDecimal contractFee;
 
     @NotNull
-    //@IntegerMismatchConstraint
     @PaymentDateConstraint
     private int paymentDate;
 

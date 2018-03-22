@@ -11,7 +11,7 @@ public class PhoneNumberValidator implements
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         value = removeIfExistPlus(value);
-        return value.length() == 11 && value.matches("[0-9]+");
+        return (value.length() == 11 || value.length() == 9) && value.matches("[0-9]+");
     }
 
     @Override

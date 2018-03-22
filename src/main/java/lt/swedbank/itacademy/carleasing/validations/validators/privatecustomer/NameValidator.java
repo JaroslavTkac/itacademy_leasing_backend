@@ -10,7 +10,7 @@ public class NameValidator implements
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return correctName(value);
+        return isValidName(value);
     }
 
     @Override
@@ -18,7 +18,7 @@ public class NameValidator implements
 
     }
 
-    private boolean correctName(String name) {
-        return name.matches("(?i)(^[a-z])((?![ .,'-]$)[a-z .,'-]){3,15}$");
+    private boolean isValidName(String name) {
+        return name.matches("^[A-Z][a-z]{2}");
     }
 }
