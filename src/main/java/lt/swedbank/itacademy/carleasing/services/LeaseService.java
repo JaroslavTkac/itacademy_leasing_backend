@@ -28,10 +28,10 @@ public class LeaseService extends lt.swedbank.itacademy.carleasing.services.Serv
         errorCodes = new ArrayList<>();
 
 
-        errorCodes.add(validations.validateAssetType(lease.getAssetType()));
-        errorCodes.add(validations.validateAdvancePaymentAmount(lease.getAdvancePaymentAmount(), lease.getAdvancePaymentPercentage(),
-                                                                lease.getAssetPrice()));
-        errorCodes.add(validations.validateContractFee(lease.getContractFee(), lease.getAssetPrice()));
+        //errorCodes.add(validations.validateAssetType(lease.getAssetType()));
+        //errorCodes.add(validations.validateAdvancePaymentAmount(lease.getAdvancePaymentAmount(), lease.getAdvancePaymentPercentage(),
+        //                                                        lease.getAssetPrice()));
+        //errorCodes.add(validations.validateContractFee(lease.getContractFee(), lease.getAssetPrice()));
 
         //Checking is there any errors
         List<Integer> actualErrors = validations.checkForActualError(errorCodes);

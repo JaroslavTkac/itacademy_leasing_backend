@@ -19,6 +19,6 @@ public class NameValidator implements
     }
 
     private boolean isValidName(String name) {
-        return name.matches("^[A-Z][a-z]{2}");
+        return name.matches("^[A-Z][a-z]{2,}");
     }
 }
