@@ -43,6 +43,35 @@ public class PrivateCustomer {
 
     private List errorCodes;
 
+    public PrivateCustomer(){
+
+    }
+
+    public PrivateCustomer(ObjectId id, ObjectId leaseId, String firstName, String lastName, String personalCode, String email, String phoneNumber,
+                           String address){
+        setId(id);
+        setLeaseId(leaseId);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+        setPhoneNumber(phoneNumber);
+        setAddress(address);
+        setPersonalCode(personalCode);
+    }
+
+    public PrivateCustomer(ObjectId id, ObjectId leaseId, String firstName, String lastName, String personalCode, String email, String phoneNumber,
+                           String address,  List<Integer> errorCodes){
+        setId(id);
+        setLeaseId(leaseId);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+        setPhoneNumber(phoneNumber);
+        setAddress(address);
+        setPersonalCode(personalCode);
+        setErrorCodes(errorCodes);
+    }
+
     public ObjectId getId() {
         return id;
     }
