@@ -6,6 +6,7 @@ import java.util.List;
 
 public class PrivateCustomerResponse extends Response {
     private Object id;
+    private Object leaseId;
     private String firstName;
     private String lastName;
     private String personalCode;
@@ -17,6 +18,7 @@ public class PrivateCustomerResponse extends Response {
 
     public PrivateCustomerResponse(PrivateCustomer privateCustomer){
         setId(String.valueOf(privateCustomer.getId()));
+        setLeaseId(String.valueOf(privateCustomer.getLeaseId()));
         setFirstName(privateCustomer.getFirstName());
         setLastName(privateCustomer.getLastName());
         setEmail(privateCustomer.getEmail());
@@ -32,6 +34,14 @@ public class PrivateCustomerResponse extends Response {
 
     public void setId(Object id) {
         this.id = id;
+    }
+
+    public Object getLeaseId() {
+        return leaseId;
+    }
+
+    public void setLeaseId(Object leaseId) {
+        this.leaseId = leaseId;
     }
 
     public String getFirstName() {

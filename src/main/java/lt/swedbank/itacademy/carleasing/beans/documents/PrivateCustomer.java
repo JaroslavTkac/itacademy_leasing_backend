@@ -15,6 +15,9 @@ public class PrivateCustomer {
     private ObjectId id;
 
     @NotNull
+    private ObjectId leaseId;
+    
+    @NotNull
     @NameConstraint
     private String firstName;
 
@@ -46,6 +49,14 @@ public class PrivateCustomer {
 
     public void setId(ObjectId id) {
         this.id = id;
+    }
+
+    public ObjectId getLeaseId() {
+        return leaseId;
+    }
+
+    public void setLeaseId(ObjectId leaseId) {
+        this.leaseId = leaseId;
     }
 
     public String getFirstName() {

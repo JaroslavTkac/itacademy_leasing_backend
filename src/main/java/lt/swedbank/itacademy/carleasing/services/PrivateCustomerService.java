@@ -19,16 +19,13 @@ public class PrivateCustomerService {
     public List<PrivateCustomerResponse> getAllPrivateCustomers() {
         return repository.findAll().stream().map(PrivateCustomerResponse::new).collect(Collectors.toList());
     }
-
-
-
-
-
+    
 
     public PrivateCustomer addNewPrivateCustomer(PrivateCustomer privateCustomer) {
         PrivateCustomer newPrivateCustomer = new PrivateCustomer();
 
         newPrivateCustomer.setId(new ObjectId());
+        newPrivateCustomer.setLeaseId(privateCustomer.getLeaseId());
         newPrivateCustomer.setAddress(privateCustomer.getAddress());
         newPrivateCustomer.setEmail(privateCustomer.getEmail());
         newPrivateCustomer.setFirstName(privateCustomer.getFirstName());
