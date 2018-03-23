@@ -20,6 +20,26 @@ public class PrivateCustomerService {
         return repository.findAll().stream().map(PrivateCustomerResponse::new).collect(Collectors.toList());
     }
 
+//    public PrivateCustomerResponse getPrivateCustomerById(String id) {
+//        List <PrivateCustomerResponse> privateCustomers= repository.findAll().stream().map(PrivateCustomerResponse::new).collect(Collectors.toList());
+//        PrivateCustomer privateCustomerByI;
+//
+//        for (PrivateCustomerResponse currentPrivateCustomer:privateCustomers)
+//        {
+//            if(currentPrivateCustomer.getId().equals(id)){
+////                privateCustomerById.add();
+//                System.out.println();
+//                System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx");
+//                System.out.println(currentPrivateCustomer);
+//                System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx");
+//                System.out.println();
+//                break;
+//            }
+//        }
+//
+//        return privateCustomerById;
+//    }
+
 
     public PrivateCustomer addNewPrivateCustomer(PrivateCustomer privateCustomer) {
         PrivateCustomer newPrivateCustomer = new PrivateCustomer();
@@ -35,5 +55,4 @@ public class PrivateCustomerService {
 
         return repository.save(newPrivateCustomer);
     }
-
 }
