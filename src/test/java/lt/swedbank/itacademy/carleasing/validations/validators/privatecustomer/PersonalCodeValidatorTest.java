@@ -8,34 +8,36 @@ import static org.junit.Assert.assertEquals;
 
 public class PersonalCodeValidatorTest {
 
-    PrivateCustomer privateCustomer;
+    private PrivateCustomer privateCustomer;
+    private PersonalCodeValidator validator;
+
     @Before
     public void setUp() throws Exception {
         privateCustomer = new PrivateCustomer();
+        validator = new PersonalCodeValidator();
     }
 
     @Test
     public void isValidTestingPersonalCodeCorrect() {
-        PersonalCodeValidator validator = new PersonalCodeValidator();
         privateCustomer.setPersonalCode("39706270150");
-        assertEquals(true,validator.isValid(privateCustomer.getPersonalCode(),null));
+        assertEquals(true, validator.isValid(privateCustomer.getPersonalCode(), null));
     }
+
     @Test
     public void isValidTestingPersonalCodeTooShort() {
-        PersonalCodeValidator validator = new PersonalCodeValidator();
         privateCustomer.setPersonalCode("397062701");
-        assertEquals(false,validator.isValid(privateCustomer.getPersonalCode(),null));
+        assertEquals(false, validator.isValid(privateCustomer.getPersonalCode(), null));
     }
+
     @Test
     public void isValidTestingPersonalCodeContainsLetters() {
-        PersonalCodeValidator validator = new PersonalCodeValidator();
         privateCustomer.setPersonalCode("397062b015a");
-        assertEquals(false,validator.isValid(privateCustomer.getPersonalCode(),null));
+        assertEquals(false, validator.isValid(privateCustomer.getPersonalCode(), null));
     }
+
     @Test
     public void isValidTestingPersonalCodeEmpty() {
-        PersonalCodeValidator validator = new PersonalCodeValidator();
         privateCustomer.setPersonalCode("");
-        assertEquals(false,validator.isValid(privateCustomer.getPersonalCode(),null));
+        assertEquals(false, validator.isValid(privateCustomer.getPersonalCode(), null));
     }
 }

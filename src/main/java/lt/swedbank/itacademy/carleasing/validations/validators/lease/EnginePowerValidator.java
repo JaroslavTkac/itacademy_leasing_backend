@@ -16,6 +16,6 @@ public class EnginePowerValidator implements
 
     @Override
     public boolean isValid(Integer value, ConstraintValidatorContext context) {
-        return value > 40 && value <= 2000;
+        return value > 40 && value <= 1500;
     }
 }

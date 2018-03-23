@@ -19,13 +19,17 @@ public class PrivateCustomerResponse extends Response {
     public PrivateCustomerResponse(PrivateCustomer privateCustomer){
         setId(String.valueOf(privateCustomer.getId()));
         setLeaseId(String.valueOf(privateCustomer.getLeaseId()));
-        setFirstName(privateCustomer.getFirstName());
-        setLastName(privateCustomer.getLastName());
+        setFirstName(capitalizeFirstNameLetter(privateCustomer.getFirstName()));
+        setLastName(capitalizeFirstNameLetter(privateCustomer.getLastName()));
         setEmail(privateCustomer.getEmail());
         setPhoneNumber(privateCustomer.getPhoneNumber());
         setAddress(privateCustomer.getAddress());
         setPersonalCode(privateCustomer.getPersonalCode());
         setErrorCodes(privateCustomer.getErrorCodes());
+    }
+
+    private String capitalizeFirstNameLetter(String name){
+        return name.substring(0, 1).toUpperCase() + name.toLowerCase().substring(1);
     }
 
     public Object getId() {

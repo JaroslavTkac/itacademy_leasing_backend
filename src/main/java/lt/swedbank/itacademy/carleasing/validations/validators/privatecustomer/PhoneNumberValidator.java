@@ -10,8 +10,14 @@ public class PhoneNumberValidator implements
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        value = removeIfExistPlus(value);
-        return (value.length() == 11 || value.length() == 9) && value.matches("[0-9]+");
+        try {
+            value = removeIfExistPlus(value);
+        }
+        catch (StringIndexOutOfBoundsException e){
+            return false;
+        }
+        return (value.length() != 9 || value.charAt(0) != '3') && (value.substring(0,3).equals("370") || (value.charAt(0) == '8')) &&
+                (value.length() == 11 || value.length() == 9) && value.matches("[0-9]+");
     }
 
     @Override
@@ -19,7 +25,7 @@ public class PhoneNumberValidator implements
 
     }
 
-    private String removeIfExistPlus(String phoneNumber) {
+    private String removeIfExistPlus(String phoneNumber) throws StringIndexOutOfBoundsException{
         if (phoneNumber.charAt(0) == '+') {
             phoneNumber = phoneNumber.substring(1);
         }
