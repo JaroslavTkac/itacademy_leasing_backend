@@ -27,6 +27,8 @@ public class PrivateCustomerController {
 
     //GET
     //get customer by id
+//    @RequestMapping(value= "/", method = RequestMethod.GET)
+
 
 
     //ADD

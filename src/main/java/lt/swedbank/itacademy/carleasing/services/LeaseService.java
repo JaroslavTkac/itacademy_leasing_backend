@@ -1,8 +1,11 @@
 package lt.swedbank.itacademy.carleasing.services;
 
+import lt.swedbank.itacademy.carleasing.beans.documents.CustomerLease;
 import lt.swedbank.itacademy.carleasing.beans.documents.Lease;
 import lt.swedbank.itacademy.carleasing.beans.responses.LeaseResponse;
+import lt.swedbank.itacademy.carleasing.beans.responses.PrivateCustomerResponse;
 import lt.swedbank.itacademy.carleasing.repositories.LeaseRepository;
+import lt.swedbank.itacademy.carleasing.repositories.PrivateCustomerRepository;
 import lt.swedbank.itacademy.carleasing.validations.LeaseValidations;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +17,33 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class LeaseService extends lt.swedbank.itacademy.carleasing.services.Service{
+public class LeaseService extends lt.swedbank.itacademy.carleasing.services.Service {
 
     @Autowired
     private LeaseRepository repository;
 
+    @Autowired
+    private PrivateCustomerRepository privateCustomerRepository;
+
     public List<LeaseResponse> getAllLeasings() {
         return repository.findAll().stream().map(LeaseResponse::new).collect(Collectors.toList());
+    }
+
+    public List<CustomerLease> getAllLeasesWithCustomers() {
+        List<LeaseResponse> leases = repository.findAll().stream().map(LeaseResponse::new).collect(Collectors.toList());
+        List<PrivateCustomerResponse> privateCustomers = privateCustomerRepository.findAll().stream().map(PrivateCustomerResponse::new).collect(Collectors.toList());
+        List<CustomerLease> customerLeases = new ArrayList<>();
+        CustomerLease customer;
+
+        for (LeaseResponse currentLease : leases) {
+            for (PrivateCustomerResponse currentResponse : privateCustomers) {
+                if (currentLease.getId().equals(currentResponse.getLeaseId())) {
+                    customer = new CustomerLease(currentResponse, currentLease);
+                    customerLeases.add(customer);
+                }
+            }
+        }
+        return customerLeases;
     }
 
     public Lease addNewLeasing(Lease lease) {
@@ -36,24 +59,23 @@ public class LeaseService extends lt.swedbank.itacademy.carleasing.services.Serv
         //Checking is there any errors
         List<Integer> actualErrors = validations.checkForActualError(errorCodes);
 
-        if(actualErrors.size() == 0) {
+        if (actualErrors.size() == 0) {
             //if no errors
             //saving to DB
             return repository.save(initNewLeasing(lease, actualErrors));
-        }
-        else{
+        } else {
             //if have error, returning empty object with error codes
             return initNewLeasing(lease, actualErrors);
         }
     }
 
 
-    private Lease initNewLeasing(Lease lease, List<Integer> errorCodes){
+    private Lease initNewLeasing(Lease lease, List<Integer> errorCodes) {
         Lease newLease = new Lease();
 
         newLease.setErrorCodes(errorCodes);
         newLease.setId(new ObjectId());
-        if(newLease.getErrorCodes().size() == 0) {
+        if (newLease.getErrorCodes().size() == 0) {
             newLease.setAssetType(lease.getAssetType());
             newLease.setCarBrand(lease.getCarBrand());
             newLease.setCarModel(lease.getCarModel());
@@ -66,8 +88,7 @@ public class LeaseService extends lt.swedbank.itacademy.carleasing.services.Serv
             newLease.setMargin(lease.getMargin());
             newLease.setContractFee(lease.getContractFee());
             newLease.setPaymentDate(lease.getPaymentDate());
-        }
-        else{
+        } else {
             newLease.setAssetType("");
             newLease.setCarBrand("");
             newLease.setCarModel("");
@@ -84,5 +105,6 @@ public class LeaseService extends lt.swedbank.itacademy.carleasing.services.Serv
 
         return newLease;
     }
+
 
 }
