@@ -26,20 +26,10 @@ public class PrivateCustomerController {
     }
 
     //GET
-    //get customer by id
-//    @RequestMapping(value= "/byid/{id}", method = RequestMethod.GET)
-//    public PrivateCustomer getPrivateCustomerById(@PathVariable("id") String id)
-//    {
-//        return privateCustomerService.getPrivateCustomerById(id);
-//    }
-
-//    //GET
-//    @RequestMapping(value = "/brand/{name}", method = RequestMethod.GET)
-//    public List<CarModelResponse> getAllModelsByBrand(@PathVariable("name") String brandName) {
-//        return carsService.getAllModelsByBrand(brandName);
-//    }
-
-
+    @RequestMapping(value= "/{id}", method = RequestMethod.GET)
+    public PrivateCustomerResponse getPrivateCustomerById(@PathVariable("id") String id) {
+        return privateCustomerService.getPrivateCustomerById(id);
+    }
 
     //ADD
     @RequestMapping(value = "/add", method = RequestMethod.POST)
