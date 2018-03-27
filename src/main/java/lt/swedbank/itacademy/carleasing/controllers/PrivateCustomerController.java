@@ -25,6 +25,12 @@ public class PrivateCustomerController {
         return privateCustomerService.getAllPrivateCustomers();
     }
 
+    //GET
+    @RequestMapping(value= "/{id}", method = RequestMethod.GET)
+    public PrivateCustomerResponse getPrivateCustomerById(@PathVariable("id") String id) {
+        return privateCustomerService.getPrivateCustomerById(id);
+    }
+
     //ADD
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public PrivateCustomerResponse addNewPrivateCustomer(@Valid @RequestBody PrivateCustomer privateCustomer){

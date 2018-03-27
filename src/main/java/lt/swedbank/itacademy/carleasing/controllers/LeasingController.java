@@ -1,5 +1,6 @@
 package lt.swedbank.itacademy.carleasing.controllers;
 
+import lt.swedbank.itacademy.carleasing.beans.documents.CustomerLease;
 import lt.swedbank.itacademy.carleasing.beans.documents.Lease;
 import lt.swedbank.itacademy.carleasing.beans.responses.LeaseResponse;
 import lt.swedbank.itacademy.carleasing.services.LeaseService;
@@ -23,6 +24,14 @@ public class LeasingController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<LeaseResponse> getAllLeasings(){
        return leaseService.getAllLeasings();
+    }
+
+
+    //GET
+    //lease and customer who assigned to that lease
+    @RequestMapping(value = "/get_detailed_leases", method = RequestMethod.GET)
+    public List<CustomerLease> getAllLeasesWithCustomers(){
+        return leaseService.getAllLeasesWithCustomers();
     }
 
     //ADD

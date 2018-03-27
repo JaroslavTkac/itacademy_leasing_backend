@@ -3,11 +3,11 @@ package lt.swedbank.itacademy.carleasing.beans.responses;
 import lt.swedbank.itacademy.carleasing.beans.documents.Lease;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public class LeaseResponse extends Response {
     private String id;
     private String assetType;
+    private String leaseType;
     private String carBrand;
     private String carModel;
     private String years;
@@ -19,11 +19,12 @@ public class LeaseResponse extends Response {
     private float margin;
     private BigDecimal contractFee;
     private int paymentDate;
-    private List errorCodes;
+    private String status;
 
 
     public LeaseResponse(Lease lease){
         setId(String.valueOf(lease.getId()));
+        setLeaseType(String.valueOf(lease.getLeaseType()));
         setAssetType(lease.getAssetType());
         setCarBrand(lease.getCarBrand());
         setCarModel(lease.getCarModel());
@@ -36,7 +37,7 @@ public class LeaseResponse extends Response {
         setContractFee(lease.getContractFee());
         setPaymentDate(lease.getPaymentDate());
         setAdvancePaymentAmount(lease.getAdvancePaymentAmount());
-        setErrorCodes(lease.getErrorCodes());
+        setStatus(lease.getStatus());
     }
 
     public String getId() {
@@ -45,6 +46,14 @@ public class LeaseResponse extends Response {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getLeaseType() {
+        return leaseType;
+    }
+
+    public void setLeaseType(String leaseType) {
+        this.leaseType = leaseType;
     }
 
     public String getAssetType() {
@@ -143,11 +152,11 @@ public class LeaseResponse extends Response {
         this.paymentDate = paymentDate;
     }
 
-    public List getErrorCodes() {
-        return errorCodes;
+    public String getStatus() {
+        return status;
     }
 
-    public void setErrorCodes(List errorCodes) {
-        this.errorCodes = errorCodes;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

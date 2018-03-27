@@ -1,45 +1,45 @@
 package lt.swedbank.itacademy.carleasing.beans.documents;
 
+import lt.swedbank.itacademy.carleasing.validations.constraints.privatecustomer.NameConstraint;
+import lt.swedbank.itacademy.carleasing.validations.constraints.privatecustomer.PersonalCodeConstraint;
 import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Document(collection = "private_customers")
-public class PrivateCustomer {
+public class PrivateCustomer extends Customer{
 
-    @Id
-    private ObjectId id;
 
     @NotNull
+    @NameConstraint
     private String firstName;
 
     @NotNull
+    @NameConstraint
     private String lastName;
 
     @NotNull
+    @PersonalCodeConstraint
     private String personalCode;
 
-    @NotNull
-    private String email;
 
-    @NotNull
-    private String phoneNumber;
+    public PrivateCustomer(){
 
-    @NotNull
-    private String address;
-
-    private List errorCodes;
-
-    public ObjectId getId() {
-        return id;
     }
 
-    public void setId(ObjectId id) {
-        this.id = id;
+    public PrivateCustomer(ObjectId id, ObjectId leaseId, String firstName, String lastName, String personalCode, String email, String phoneNumber,
+                           String address){
+        setId(id);
+        setLeaseId(leaseId);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+        setPhoneNumber(phoneNumber);
+        setAddress(address);
+        setPersonalCode(personalCode);
     }
+
 
     public String getFirstName() {
         return firstName;
@@ -65,35 +65,4 @@ public class PrivateCustomer {
         this.personalCode = personalCode;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public List getErrorCodes() {
-        return errorCodes;
-    }
-
-    public void setErrorCodes(List errorCodes) {
-        this.errorCodes = errorCodes;
-    }
 }

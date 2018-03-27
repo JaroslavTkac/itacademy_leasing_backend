@@ -23,14 +23,12 @@ public class CorporateCustomerController {
     //GET
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<CorporateCustomerResponse> getAllCorporateCustomers(){
-        return null;
-        //return corporateCustomerService.getAllCorporateCustomers();
+        return corporateCustomerService.getAllCorporateCustomers();
     }
 
     //ADD
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public CorporateCustomerResponse add(@Valid @RequestBody CorporateCustomer corporateCustomer){
-        return null;
-        //return new CorporateCustomerResponse(corporateCustomerService.addNewPrivateCustomer(corporateCustomer));
+        return new CorporateCustomerResponse(corporateCustomerService.addNewPrivateCustomer(corporateCustomer));
     }
 }
