@@ -5,8 +5,6 @@ import org.bson.types.ObjectId;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
 
 public class PrivateCustomerResponseTest {
@@ -20,14 +18,14 @@ public class PrivateCustomerResponseTest {
     @Test
     public void capitalizationTestingCorrectInput(){
         response = new PrivateCustomerResponse(new PrivateCustomer(new ObjectId(), new ObjectId(), "Jaroslav", "Tolvinas",
-                "39508201230", "spawn@inbox.lt", "865090090", "Vilniaus g.2", new ArrayList<>()));
+                "39508201230", "spawn@inbox.lt", "865090090", "Vilniaus g.2"));
         assertEquals("Jaroslav", response.getFirstName());
     }
 
     @Test
     public void capitalizationTestingFirstNameWithNotCapitalizedFirstLetter(){
         response = new PrivateCustomerResponse(new PrivateCustomer(new ObjectId(), new ObjectId(), "jaroslav", "Tolvinas",
-                "39508201230", "spawn@inbox.lt", "865090090", "Vilniaus g.2", new ArrayList<>()));
+                "39508201230", "spawn@inbox.lt", "865090090", "Vilniaus g.2"));
         assertEquals("Jaroslav", response.getFirstName());
     }
 

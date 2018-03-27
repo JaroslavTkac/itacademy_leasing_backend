@@ -48,7 +48,7 @@ public class PrivateCustomerControllerTest {
     @Test
     public void getAllPrivateCustomersTestingAllFields() throws Exception {
         PrivateCustomer privateCustomer = new PrivateCustomer(privateCustomerId, leaseId, "Jaroslav", "Tolvinas",
-                "39508201230", "spawn@inbox.lt", "865090090", "Vilniaus g.2", new ArrayList<>());
+                "39508201230", "spawn@inbox.lt", "865090090", "Vilniaus g.2");
 
         List<PrivateCustomerResponse> allPrivateCustomers = new ArrayList();
         allPrivateCustomers.add(new PrivateCustomerResponse(privateCustomer));
@@ -72,7 +72,7 @@ public class PrivateCustomerControllerTest {
     @Test
     public void getAllPrivateCustomersTestingCorrectAmountOfElements() throws Exception {
         PrivateCustomer privateCustomer = new PrivateCustomer(privateCustomerId, leaseId, "Jaroslav", "Tolvinas",
-                "39508201230", "spawn@inbox.lt", "865090090", "Vilniaus g.2", new ArrayList<>());
+                "39508201230", "spawn@inbox.lt", "865090090", "Vilniaus g.2");
 
         List<PrivateCustomerResponse> allPrivateCustomers = new ArrayList();
         allPrivateCustomers.add(new PrivateCustomerResponse(privateCustomer));

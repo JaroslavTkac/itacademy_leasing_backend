@@ -1,27 +1,23 @@
 package lt.swedbank.itacademy.carleasing.beans.documents;
 
+import lt.swedbank.itacademy.carleasing.beans.responses.CustomerResponse;
 import lt.swedbank.itacademy.carleasing.beans.responses.LeaseResponse;
-import lt.swedbank.itacademy.carleasing.beans.responses.PrivateCustomerResponse;
 
 public class CustomerLease {
-    private PrivateCustomerResponse privateCustomer;
+    private CustomerResponse customer;
     private LeaseResponse lease;
 
-    public CustomerLease(PrivateCustomerResponse privateCustomer, LeaseResponse lease) {
+    public CustomerLease(CustomerResponse customer, LeaseResponse lease) {
         setLease(lease);
-        setPrivateCustomer(privateCustomer);
+        setCustomer(customer);
     }
 
-
-
-
-
-    public PrivateCustomerResponse getPrivateCustomer() {
-        return privateCustomer;
+    public CustomerResponse getCustomer() {
+        return customer;
     }
 
-    public void setPrivateCustomer(PrivateCustomerResponse privateCustomer) {
-        this.privateCustomer = privateCustomer;
+    public void setCustomer(CustomerResponse customer) {
+        this.customer = customer;
     }
 
     public LeaseResponse getLease() {

@@ -28,8 +28,8 @@ public class LeasingController {
 
 
     //GET
-    //lease and customer who assigned to that lease\
-    @RequestMapping(value = "/getall", method = RequestMethod.GET)
+    //lease and customer who assigned to that lease
+    @RequestMapping(value = "/get_detailed_leases", method = RequestMethod.GET)
     public List<CustomerLease> getAllLeasesWithCustomers(){
         return leaseService.getAllLeasesWithCustomers();
     }

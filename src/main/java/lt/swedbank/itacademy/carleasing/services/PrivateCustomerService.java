@@ -19,16 +19,15 @@ public class PrivateCustomerService {
     public List<PrivateCustomerResponse> getAllPrivateCustomers() {
         return repository.findAll().stream().map(PrivateCustomerResponse::new).collect(Collectors.toList());
     }
+
     public PrivateCustomerResponse getPrivateCustomerById(String id) {
         List<PrivateCustomerResponse> privateCustomers = repository.findAll().stream().map(PrivateCustomerResponse::new).collect(Collectors.toList());
-
         for (PrivateCustomerResponse currentPrivateCustomer : privateCustomers) {
-
             if (currentPrivateCustomer.getId().equals(id)) {
                 return currentPrivateCustomer;
             }
         }
-      return null;
+        return null;
     }
 
     public PrivateCustomer addNewPrivateCustomer(PrivateCustomer privateCustomer) {

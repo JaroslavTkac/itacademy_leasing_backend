@@ -2,9 +2,7 @@ package lt.swedbank.itacademy.carleasing.beans.responses;
 
 import lt.swedbank.itacademy.carleasing.beans.documents.PrivateCustomer;
 
-import java.util.List;
-
-public class PrivateCustomerResponse extends Response {
+public class PrivateCustomerResponse extends CustomerResponse {
     private Object id;
     private Object leaseId;
     private String firstName;
@@ -13,8 +11,6 @@ public class PrivateCustomerResponse extends Response {
     private String email;
     private String phoneNumber;
     private String address;
-    private List errorCodes;
-
 
     public PrivateCustomerResponse(PrivateCustomer privateCustomer){
         setId(String.valueOf(privateCustomer.getId()));
@@ -25,7 +21,6 @@ public class PrivateCustomerResponse extends Response {
         setPhoneNumber(privateCustomer.getPhoneNumber());
         setAddress(privateCustomer.getAddress());
         setPersonalCode(privateCustomer.getPersonalCode());
-        setErrorCodes(privateCustomer.getErrorCodes());
     }
 
     private String capitalizeFirstNameLetter(String name){
@@ -96,11 +91,4 @@ public class PrivateCustomerResponse extends Response {
         this.address = address;
     }
 
-    public List getErrorCodes() {
-        return errorCodes;
-    }
-
-    public void setErrorCodes(List errorCodes) {
-        this.errorCodes = errorCodes;
-    }
 }
