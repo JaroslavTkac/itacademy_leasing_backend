@@ -8,4 +8,6 @@ import java.util.List;
 public interface CorporateCustomerRepository extends CrudRepository<CorporateCustomer, String> {
 
     List<CorporateCustomer> findAll();
+
+    CorporateCustomer findCorporateCustomersById(String id);
 }

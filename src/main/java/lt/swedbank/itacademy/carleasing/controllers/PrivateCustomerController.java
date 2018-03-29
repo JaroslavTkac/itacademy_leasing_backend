@@ -21,19 +21,26 @@ public class PrivateCustomerController {
 
     //GET
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<PrivateCustomerResponse> getAllPrivateCustomers(){
+    public List<PrivateCustomerResponse> getAllPrivateCustomers() {
         return privateCustomerService.getAllPrivateCustomers();
     }
 
     //GET
-    @RequestMapping(value= "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public PrivateCustomerResponse getPrivateCustomerById(@PathVariable("id") String id) {
         return privateCustomerService.getPrivateCustomerById(id);
     }
 
     //ADD
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public PrivateCustomerResponse addNewPrivateCustomer(@Valid @RequestBody PrivateCustomer privateCustomer){
+    public PrivateCustomerResponse addNewPrivateCustomer(@Valid @RequestBody PrivateCustomer privateCustomer) {
         return new PrivateCustomerResponse(privateCustomerService.addNewPrivateCustomer(privateCustomer));
     }
+
+    //DELETE
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public void removePrivateCustomer(@PathVariable("id") String id) {
+        privateCustomerService.deletePrivateCustomer(id);
+    }
+
 }

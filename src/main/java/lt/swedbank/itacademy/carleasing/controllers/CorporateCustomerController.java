@@ -22,13 +22,29 @@ public class CorporateCustomerController {
 
     //GET
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<CorporateCustomerResponse> getAllCorporateCustomers(){
+    public List<CorporateCustomerResponse> getAllCorporateCustomers() {
         return corporateCustomerService.getAllCorporateCustomers();
+    }
+
+    //GET
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public CorporateCustomerResponse getCorporateCustomerById(@PathVariable("id") String id/*,
+                                                              HttpServletResponse response*/) {
+        /*if(corporateCustomerService.getCorporateCustomerById(id) == null){
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }*/
+        return corporateCustomerService.getCorporateCustomerById(id);
     }
 
     //ADD
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public CorporateCustomerResponse add(@Valid @RequestBody CorporateCustomer corporateCustomer){
-        return new CorporateCustomerResponse(corporateCustomerService.addNewPrivateCustomer(corporateCustomer));
+    public CorporateCustomerResponse add(@Valid @RequestBody CorporateCustomer corporateCustomer) {
+        return new CorporateCustomerResponse(corporateCustomerService.addNewCorporateCustomer(corporateCustomer));
+    }
+
+    //DELETE
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public void removeCorporateCustomer(@PathVariable("id") String id) {
+        corporateCustomerService.deleteCorporateCustomer(id);
     }
 }

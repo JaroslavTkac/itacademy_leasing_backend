@@ -46,4 +46,7 @@ public class PrivateCustomerService {
     }
 
 
+    public void deletePrivateCustomer(String id) {
+        repository.delete(repository.findPrivateCustomerById(id));
+    }
 }

@@ -76,6 +76,7 @@ public class LeaseService {
     }
 
 
-
-
+    public void deleteLease(String id) {
+        repository.delete(repository.findLeasingById(id));
+    }
 }

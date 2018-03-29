@@ -22,7 +22,7 @@ public class CorporateCustomerService {
         return repository.findAll().stream().map(CorporateCustomerResponse::new).collect(Collectors.toList());
     }
 
-    public CorporateCustomer addNewPrivateCustomer(@Valid CorporateCustomer corporateCustomer) {
+    public CorporateCustomer addNewCorporateCustomer(@Valid CorporateCustomer corporateCustomer) {
         CorporateCustomer newCorporateCustomer = new CorporateCustomer();
 
         newCorporateCustomer.setId(new ObjectId());
@@ -34,5 +34,21 @@ public class CorporateCustomerService {
         newCorporateCustomer.setPhoneNumber(corporateCustomer.getPhoneNumber());
 
         return repository.save(newCorporateCustomer);
+    }
+
+    public CorporateCustomerResponse getCorporateCustomerById(String id) {
+        List<CorporateCustomerResponse> corporateCustomers = repository.findAll().stream().map(CorporateCustomerResponse::new).collect(Collectors.toList());
+        for (CorporateCustomerResponse customer : corporateCustomers) {
+            if (customer.getId().equals(id)) {
+                return customer;
+            }
+        }
+        return null;
+        //return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        //throw new NullPointerException("404");
+    }
+
+    public void deleteCorporateCustomer(String id) {
+        repository.delete(repository.findCorporateCustomersById(id));
     }
 }

@@ -22,24 +22,30 @@ public class LeasingController {
 
     //GET
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<LeaseResponse> getAllLeasings(){
-       return leaseService.getAllLeasings();
+    public List<LeaseResponse> getAllLeasings() {
+        return leaseService.getAllLeasings();
     }
 
 
     //GET
     //lease and customer who assigned to that lease
     @RequestMapping(value = "/get_detailed_leases", method = RequestMethod.GET)
-    public List<CustomerLease> getAllLeasesWithCustomers(){
+    public List<CustomerLease> getAllLeasesWithCustomers() {
         return leaseService.getAllLeasesWithCustomers();
     }
 
     //ADD
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public LeaseResponse addLeasing(@Valid @RequestBody Lease lease){
+    public LeaseResponse addLeasing(@Valid @RequestBody Lease lease) {
         return new LeaseResponse(leaseService.addNewLeasing(lease));
     }
 
+
+    //DELETE
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public void removeLease(@PathVariable("id") String id) {
+        leaseService.deleteLease(id);
+    }
 
 
 }

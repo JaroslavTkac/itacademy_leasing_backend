@@ -22,6 +22,16 @@ public class CorporateCustomerResponse extends CustomerResponse {
         setPhoneNumber(customer.getPhoneNumber());
     }
 
+    public CorporateCustomerResponse(String id, String leaseId, String companyName, String companyCode, String email, String phoneNumber, String address) {
+        this.id = id;
+        this.leaseId = leaseId;
+        this.companyName = companyName;
+        this.companyCode = companyCode;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+
     public String getId() {
         return id;
     }
