@@ -30,6 +30,12 @@ public class CompanyNameValidatorTest {
     }
 
     @Test
+    public void isValidTestingCompanyNameWithLithuanianLetters() {
+        corporateCustomer.setCompanyName("AB Škoda");
+        assertEquals(true, validator.isValid(corporateCustomer.getCompanyName(), null));
+    }
+
+    @Test
     public void isValidTestingCompanyNameWithTooSmallLength() {
         corporateCustomer.setCompanyName("KE");
         assertEquals(false, validator.isValid(corporateCustomer.getCompanyName(), null));

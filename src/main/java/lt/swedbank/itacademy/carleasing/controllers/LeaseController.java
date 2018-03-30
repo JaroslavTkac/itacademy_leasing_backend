@@ -13,8 +13,7 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "/leasing")
-public class LeasingController {
-
+public class LeaseController {
 
     @Autowired
     private LeaseService leaseService;
@@ -22,13 +21,11 @@ public class LeasingController {
 
     //GET
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<LeaseResponse> getAllLeasings() {
-        return leaseService.getAllLeasings();
+    public List<LeaseResponse> getAllLeases() {
+        return leaseService.getAllLeases();
     }
 
-
     //GET
-    //lease and customer who assigned to that lease
     @RequestMapping(value = "/get_detailed_leases", method = RequestMethod.GET)
     public List<CustomerLease> getAllLeasesWithCustomers() {
         return leaseService.getAllLeasesWithCustomers();
@@ -36,10 +33,9 @@ public class LeasingController {
 
     //ADD
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public LeaseResponse addLeasing(@Valid @RequestBody Lease lease) {
-        return new LeaseResponse(leaseService.addNewLeasing(lease));
+    public LeaseResponse addNewLease(@Valid @RequestBody Lease lease) {
+        return leaseService.addNewLease(lease);
     }
-
 
     //DELETE
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)

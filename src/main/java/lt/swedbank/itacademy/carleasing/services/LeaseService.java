@@ -28,7 +28,7 @@ public class LeaseService {
     @Autowired
     private CorporateCustomerRepository corporateCustomerRepository;
 
-    public List<LeaseResponse> getAllLeasings() {
+    public List<LeaseResponse> getAllLeases() {
         return repository.findAll().stream().map(LeaseResponse::new).collect(Collectors.toList());
     }
 
@@ -56,7 +56,7 @@ public class LeaseService {
         return customerLeases;
     }
 
-    public Lease addNewLeasing(Lease lease) {
+    public LeaseResponse addNewLease(Lease lease) {
         Lease newLease = new Lease();
         newLease.setId(new ObjectId());
         newLease.setAssetType(lease.getAssetType());
@@ -72,7 +72,7 @@ public class LeaseService {
         newLease.setContractFee(lease.getContractFee());
         newLease.setPaymentDate(lease.getPaymentDate());
 
-        return repository.save(newLease);
+        return new LeaseResponse(repository.save(newLease));
     }
 
 

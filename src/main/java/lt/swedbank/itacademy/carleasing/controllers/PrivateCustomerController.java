@@ -15,9 +15,9 @@ import java.util.List;
 @RequestMapping(value = "/private_customer")
 public class PrivateCustomerController {
 
+
     @Autowired
     private PrivateCustomerService privateCustomerService;
-
 
     //GET
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -34,13 +34,13 @@ public class PrivateCustomerController {
     //ADD
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public PrivateCustomerResponse addNewPrivateCustomer(@Valid @RequestBody PrivateCustomer privateCustomer) {
-        return new PrivateCustomerResponse(privateCustomerService.addNewPrivateCustomer(privateCustomer));
+        return privateCustomerService.addNewPrivateCustomer(privateCustomer);
     }
 
     //DELETE
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public void removePrivateCustomer(@PathVariable("id") String id) {
-        privateCustomerService.deletePrivateCustomer(id);
+        privateCustomerService.removePrivateCustomer(id);
     }
 
 }

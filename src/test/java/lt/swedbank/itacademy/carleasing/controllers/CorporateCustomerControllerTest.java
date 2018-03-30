@@ -3,45 +3,44 @@ package lt.swedbank.itacademy.carleasing.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lt.swedbank.itacademy.carleasing.beans.documents.CorporateCustomer;
 import lt.swedbank.itacademy.carleasing.beans.responses.CorporateCustomerResponse;
-import lt.swedbank.itacademy.carleasing.repositories.CorporateCustomerRepository;
+import lt.swedbank.itacademy.carleasing.exceptions.NotFoundException;
+import lt.swedbank.itacademy.carleasing.services.CorporateCustomerService;
 import org.bson.types.ObjectId;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.json.JacksonTester;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.hamcrest.core.Is.is;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(CorporateCustomerController.class)
+
 public class CorporateCustomerControllerTest {
 
-    @Autowired
-    private MockMvc mvc;
+    private MockMvc mockMvc;
 
-    @MockBean
-    private CorporateCustomerRepository repository;
+    @Mock
+    private CorporateCustomerService service;
 
-    @MockBean
+    @InjectMocks
     private CorporateCustomerController controller;
+
 
     private JacksonTester<CorporateCustomer> jsonCorporateCustomer;
     private JacksonTester<CorporateCustomerResponse> jsonCorporateCustomerResponse;
@@ -53,13 +52,67 @@ public class CorporateCustomerControllerTest {
 
     @Before
     public void setUp() throws Exception {
+        MockitoAnnotations.initMocks(this);
+
         JacksonTester.initFields(this, new ObjectMapper());
+        mockMvc = MockMvcBuilders
+                .standaloneSetup(controller)
+                .build();
+
+                //.setControllerAdvice(new RestResponseEntityExceptionHandler())
+
         id = new ObjectId();
-        ObjectId leaseId = new ObjectId();
-        goodCustomer = new CorporateCustomer(id, leaseId, "inbox@inbox.lt", "865666002",
+
+        goodCustomer = new CorporateCustomer(id, new ObjectId(), "inbox@inbox.lt", "865666002",
                 "Vilniaus g.2", "UAB ALTAS", "123456789");
-        badCustomer = new CorporateCustomer(id, leaseId, "inbox@inbox.lt", "865666002",
+        badCustomer = new CorporateCustomer(id, new ObjectId(), "inbox@inbox.lt", "865666002",
                 "Vilniaus g.2", "UAB ALTAS", "173598191650171");
+
+    }
+
+    @Test
+    public void canRetrieveAllCustomers() throws Exception{
+        List<CorporateCustomerResponse> customers = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            goodCustomer.setCompanyName(goodCustomer.getCompanyName() + String.valueOf(i));
+            customers.add(new CorporateCustomerResponse(goodCustomer));
+        }
+
+        when(controller.getAllCorporateCustomers()).thenReturn(customers);
+
+        mockMvc.perform(
+                get("/corporate_customer")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(5)))
+
+                .andExpect(jsonPath("$[0].companyName", is("UAB ALTAS0")))
+                .andExpect(jsonPath("$[1].companyName", is("UAB ALTAS01")))
+                .andExpect(jsonPath("$[2].companyName", is("UAB ALTAS012")))
+                .andExpect(jsonPath("$[3].companyName", is("UAB ALTAS0123")))
+                .andExpect(jsonPath("$[4].companyName", is("UAB ALTAS01234")))
+                .andReturn().getResponse();
+    }
+
+    @Test
+    public void canRetrieveOneCustomerFromList() throws Exception{
+        List<CorporateCustomerResponse> customers = new ArrayList<>();
+        customers.add(new CorporateCustomerResponse(goodCustomer));
+
+        //given
+        given(controller.getAllCorporateCustomers()).willReturn(customers);
+
+        //when
+        MockHttpServletResponse response =  mockMvc.perform(
+                get("/corporate_customer")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andReturn().getResponse();
+
+        //then
+        assertThat(response.getContentAsString()).isEqualTo(
+                jsonCorporateCustomerResponseList.write(customers).getJson()
+        );
     }
 
     @Test
@@ -69,132 +122,74 @@ public class CorporateCustomerControllerTest {
                 .willReturn(new CorporateCustomerResponse(goodCustomer));
 
         //when
-        MockHttpServletResponse response = mvc.perform(
+        MockHttpServletResponse response = mockMvc.perform(
                 get("/corporate_customer/" + String.valueOf(id))
-                        .accept(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn().getResponse();
 
         //then
-        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.getContentAsString()).isEqualTo(
                 jsonCorporateCustomerResponse.write(new CorporateCustomerResponse(goodCustomer)).getJson()
         );
     }
 
-    //FIXME NOT_FOUND should be
     @Test
     public void canRetrieveNotExistedCustomerById() throws Exception{
-        //given
-        given(controller.getCorporateCustomerById(String.valueOf(id)))
-                .willReturn(new CorporateCustomerResponse(goodCustomer));
-
-
-        System.out.println(String.valueOf(id));
+        when(controller.getCorporateCustomerById(any()))
+                .thenThrow(new NotFoundException(""));
 
         //when
-        MockHttpServletResponse response = mvc.perform(
+        mockMvc.perform(
                 get("/corporate_customer/" + String.valueOf(new ObjectId()))
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
                 .andReturn().getResponse();
-
     }
 
     @Test
-    public void canRetrieveOneCustomerFromList() throws Exception{
-        List<CorporateCustomerResponse> customers = new ArrayList();
-        customers.add(new CorporateCustomerResponse(goodCustomer));
-
-        //given
-        given(controller.getAllCorporateCustomers()).willReturn(customers);
+    public void canAddNewCustomer() throws Exception {
+        when(controller.add(any()))
+                .thenReturn(new CorporateCustomerResponse(goodCustomer));
 
         //when
-        MockHttpServletResponse response =  mvc.perform(
-                get("/corporate_customer")
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andReturn().getResponse();
-
-        //then
-        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-        assertThat(response.getContentAsString()).isEqualTo(
-                jsonCorporateCustomerResponseList.write(customers).getJson()
-        );
-    }
-
-    @Test
-    public void canRetrieveFullListOfCustomers() throws Exception {
-        List<CorporateCustomerResponse> allCustomers = new ArrayList();
-        for (int i = 0; i < 10; i++) {
-            allCustomers.add(new CorporateCustomerResponse(goodCustomer));
-        }
-
-        //given
-        given(controller.getAllCorporateCustomers()).willReturn(allCustomers);
-
-        //when
-        MockHttpServletResponse response = mvc.perform(
-                get("/corporate_customer")
-                        .accept(MediaType.APPLICATION_JSON))
+        MockHttpServletResponse response = mockMvc.perform(
+                post("/corporate_customer/add")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonCorporateCustomer.write(goodCustomer).getJson()
+                ))
                 //then
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(10)))
                 .andReturn().getResponse();
-    }
 
-    @Test
-    public void canAddANewCustomer() throws Exception {
-        //given
-        given(controller.add(goodCustomer)).willReturn(new CorporateCustomerResponse(goodCustomer));
-
-        //when
-        MockHttpServletResponse response = mvc.perform(
-                post("/corporate_customer/add").contentType(MediaType.APPLICATION_JSON).content(
-                        jsonCorporateCustomer.write(goodCustomer).getJson()
-                )).andReturn().getResponse();
-
-        //then
-        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-        /*assertThat(response.getContentAsString()).isEqualTo(
+        assertThat(response.getContentAsString()).isEqualTo(
                 jsonCorporateCustomerResponse.write(new CorporateCustomerResponse(goodCustomer)).getJson()
-        );*/ //TODO paklausti kodel response yra tuscias, o kai siunti su klaida responsas yra
+        );
     }
 
     @Test
     public void canAddNewCustomerWithIncorrectData() throws Exception {
         //when
-        MockHttpServletResponse response = mvc.perform(
-                post("/corporate_customer/add").contentType(MediaType.APPLICATION_JSON).content(
-                        jsonCorporateCustomer.write(badCustomer).getJson()
-                )).andReturn().getResponse();
-
-        //then
-        assertThat(response.getStatus()).isEqualTo(HttpStatus.BAD_REQUEST.value());
+        mockMvc.perform(
+                post("/corporate_customer/add")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonCorporateCustomer.write(badCustomer).getJson()
+                ))
+                //then
+                .andExpect(status().isBadRequest())
+                .andReturn().getResponse();
     }
 
     @Test
     public void canDeleteCustomerById() throws Exception{
-        MockHttpServletResponse deleteResponse = mvc.perform(
-                delete("/corporate_customer/delete/" + String.valueOf(id)).contentType(MediaType.APPLICATION_JSON).content(
-                        jsonCorporateCustomer.write(goodCustomer).getJson()
-                )).andReturn().getResponse();
-        //then
-        assertThat(deleteResponse.getStatus()).isEqualTo(HttpStatus.OK.value());
-    }
-
-    @Test
-    public void canDeleteCustomerByIdNotExistedCustomer() throws Exception{
         //when
-        MockHttpServletResponse deleteResponse = mvc.perform(
-                delete("/corporate_customer/delete/5abcf030ea1d3a2249f93391").contentType(MediaType.APPLICATION_JSON).content(
-                        jsonCorporateCustomer.write(goodCustomer).getJson()
-                )).andReturn().getResponse();
-        //then
-        assertThat(deleteResponse.getStatus()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        MockHttpServletResponse response = mockMvc.perform(
+                delete("/corporate_customer/delete/" + String.valueOf(id))
+                        .contentType(MediaType.APPLICATION_JSON))
+                //then
+                .andExpect(status().isOk())
+                .andReturn().getResponse();
     }
-
-
 
 
 

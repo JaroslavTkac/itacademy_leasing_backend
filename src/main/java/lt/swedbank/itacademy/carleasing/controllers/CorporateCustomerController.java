@@ -28,18 +28,14 @@ public class CorporateCustomerController {
 
     //GET
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public CorporateCustomerResponse getCorporateCustomerById(@PathVariable("id") String id/*,
-                                                              HttpServletResponse response*/) {
-        /*if(corporateCustomerService.getCorporateCustomerById(id) == null){
-            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-        }*/
+    public CorporateCustomerResponse getCorporateCustomerById(@PathVariable("id") String id) {
         return corporateCustomerService.getCorporateCustomerById(id);
     }
 
     //ADD
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public CorporateCustomerResponse add(@Valid @RequestBody CorporateCustomer corporateCustomer) {
-        return new CorporateCustomerResponse(corporateCustomerService.addNewCorporateCustomer(corporateCustomer));
+        return corporateCustomerService.addNewCorporateCustomer(corporateCustomer);
     }
 
     //DELETE

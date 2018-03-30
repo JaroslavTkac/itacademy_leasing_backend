@@ -10,7 +10,8 @@ public class CompanyNameValidator implements
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return !value.isEmpty() && value.matches("[a-zA-Z\\s]{3,20}");
+        return !value.isEmpty() && value.matches("[[a-zA-Zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšž" +
+                "ÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]\\s]{3,20}");
     }
 
     @Override
