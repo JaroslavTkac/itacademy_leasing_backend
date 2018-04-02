@@ -8,10 +8,10 @@ import lt.swedbank.itacademy.carleasing.beans.responses.PrivateCustomerResponse;
 import lt.swedbank.itacademy.carleasing.repositories.CorporateCustomerRepository;
 import lt.swedbank.itacademy.carleasing.repositories.LeaseRepository;
 import lt.swedbank.itacademy.carleasing.repositories.PrivateCustomerRepository;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,9 +56,10 @@ public class LeaseService {
         return customerLeases;
     }
 
-    public LeaseResponse addNewLease(Lease lease) {
+    public LeaseResponse addNewLease(@Valid Lease lease) {
         Lease newLease = new Lease();
-        newLease.setId(new ObjectId());
+        //newLease.setCustomerId(new ObjectId());
+        newLease.setId(lease.getId());
         newLease.setAssetType(lease.getAssetType());
         newLease.setCarBrand(lease.getCarBrand());
         newLease.setCarModel(lease.getCarModel());

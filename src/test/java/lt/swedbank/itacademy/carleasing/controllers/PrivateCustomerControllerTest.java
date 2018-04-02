@@ -149,37 +149,37 @@ public class PrivateCustomerControllerTest {
                 .andReturn().getResponse();
     }
 
-    @Test
-    public void canAddNewCustomer() throws Exception {
-        when(controller.addNewPrivateCustomer(any())).thenReturn(new PrivateCustomerResponse(goodCustomer));
+//    @Test
+//    public void canAddNewCustomer() throws Exception {
+//        when(controller.addNewPrivateCustomer(any())).thenReturn(new PrivateCustomerResponse(goodCustomer));
+//
+//        //when
+//        MockHttpServletResponse response = mockMvc.perform(
+//                post("/private_customer/add")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(jsonPrivateCustomer.write(goodCustomer).getJson()
+//                        ))
+//                //then
+//                .andExpect(status().isOk())
+//                .andReturn().getResponse();
+//
+//        assertThat(response.getContentAsString()).isEqualTo(
+//                jsonPrivateCustomerResponse.write(new PrivateCustomerResponse(goodCustomer)).getJson()
+//        );
+//    }
 
-        //when
-        MockHttpServletResponse response = mockMvc.perform(
-                post("/private_customer/add")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(jsonPrivateCustomer.write(goodCustomer).getJson()
-                        ))
-                //then
-                .andExpect(status().isOk())
-                .andReturn().getResponse();
-
-        assertThat(response.getContentAsString()).isEqualTo(
-                jsonPrivateCustomerResponse.write(new PrivateCustomerResponse(goodCustomer)).getJson()
-        );
-    }
-
-    @Test
-    public void canAddNewCustomerWithIncorrectData() throws Exception {
-        //when
-        mockMvc.perform(
-                post("/private_customer/add")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(jsonPrivateCustomer.write(badCustomer).getJson()
-                        ))
-                //then
-                .andExpect(status().isBadRequest())
-                .andReturn().getResponse();
-    }
+//    @Test
+//    public void canAddNewCustomerWithIncorrectData() throws Exception {
+//        //when
+//        mockMvc.perform(
+//                post("/private_customer/add")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(jsonPrivateCustomer.write(badCustomer).getJson()
+//                        ))
+//                //then
+//                .andExpect(status().isBadRequest())
+//                .andReturn().getResponse();
+//    }
 
     @Test
     public void canDeleteCustomerById() throws Exception{

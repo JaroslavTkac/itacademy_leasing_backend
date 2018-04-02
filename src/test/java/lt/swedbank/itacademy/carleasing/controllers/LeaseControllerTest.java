@@ -20,11 +20,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -86,38 +83,38 @@ public class LeaseControllerTest {
                 .andReturn().getResponse();
     }
 
-    @Test
-    public void canAddNewLease() throws Exception{
-        when(controller.addNewLease(any()))
-                .thenReturn(new LeaseResponse(goodLease));
+//    @Test
+//    public void canAddNewLease() throws Exception{
+//        when(controller.addNewLease(any()))
+//                .thenReturn(new LeaseResponse(goodLease));
+//
+//        //when
+//        MockHttpServletResponse response = mockMvc.perform(
+//                post("/leasing/add")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(jsonLease.write(goodLease).getJson()
+//                        ))
+//                //then
+//                .andExpect(status().isOk())
+//                .andReturn().getResponse();
+//
+//        assertThat(response.getContentAsString()).isEqualTo(
+//                jsonLeaseResponse.write(new LeaseResponse(goodLease)).getJson()
+//        );
+//    }
 
-        //when
-        MockHttpServletResponse response = mockMvc.perform(
-                post("/leasing/add")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(jsonLease.write(goodLease).getJson()
-                        ))
-                //then
-                .andExpect(status().isOk())
-                .andReturn().getResponse();
-
-        assertThat(response.getContentAsString()).isEqualTo(
-                jsonLeaseResponse.write(new LeaseResponse(goodLease)).getJson()
-        );
-    }
-
-    @Test
-    public void canAddNewLeaseIncorrect() throws Exception{
-        //when
-        MockHttpServletResponse response = mockMvc.perform(
-                post("/leasing/add")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(jsonLease.write(badLease).getJson()
-                        ))
-                //then
-                .andExpect(status().isBadRequest())
-                .andReturn().getResponse();
-    }
+//    @Test
+//    public void canAddNewLeaseIncorrect() throws Exception{
+//        //when
+//        MockHttpServletResponse response = mockMvc.perform(
+//                post("/leasing/add")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(jsonLease.write(badLease).getJson()
+//                        ))
+//                //then
+//                .andExpect(status().isBadRequest())
+//                .andReturn().getResponse();
+//    }
 
     @Test
     public void canDeleteLeaseById() throws Exception{

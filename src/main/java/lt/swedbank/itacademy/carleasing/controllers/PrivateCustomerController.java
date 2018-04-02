@@ -1,13 +1,11 @@
 package lt.swedbank.itacademy.carleasing.controllers;
 
 
-import lt.swedbank.itacademy.carleasing.beans.documents.PrivateCustomer;
 import lt.swedbank.itacademy.carleasing.beans.responses.PrivateCustomerResponse;
 import lt.swedbank.itacademy.carleasing.services.PrivateCustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -32,10 +30,10 @@ public class PrivateCustomerController {
     }
 
     //ADD
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public PrivateCustomerResponse addNewPrivateCustomer(@Valid @RequestBody PrivateCustomer privateCustomer) {
-        return privateCustomerService.addNewPrivateCustomer(privateCustomer);
-    }
+//    @RequestMapping(value = "/add", method = RequestMethod.POST)
+//    public PrivateCustomerResponse addNewPrivateCustomer(@Valid @RequestBody PrivateCustomer privateCustomer) {
+//        return privateCustomerService.addNewPrivateCustomer(privateCustomer);
+//    }
 
     //DELETE
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)

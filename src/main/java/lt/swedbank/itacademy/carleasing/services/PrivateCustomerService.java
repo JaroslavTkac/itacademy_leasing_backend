@@ -4,7 +4,6 @@ import lt.swedbank.itacademy.carleasing.beans.documents.PrivateCustomer;
 import lt.swedbank.itacademy.carleasing.beans.responses.PrivateCustomerResponse;
 import lt.swedbank.itacademy.carleasing.exceptions.NotFoundException;
 import lt.swedbank.itacademy.carleasing.repositories.PrivateCustomerRepository;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +37,7 @@ public class PrivateCustomerService {
     public PrivateCustomerResponse addNewPrivateCustomer(PrivateCustomer privateCustomer) {
         PrivateCustomer newPrivateCustomer = new PrivateCustomer();
 
-        newPrivateCustomer.setId(new ObjectId());
+        newPrivateCustomer.setId(privateCustomer.getId());
         newPrivateCustomer.setLeaseId(privateCustomer.getLeaseId());
         newPrivateCustomer.setAddress(privateCustomer.getAddress());
         newPrivateCustomer.setEmail(privateCustomer.getEmail());

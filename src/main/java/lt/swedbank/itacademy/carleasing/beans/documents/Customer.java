@@ -13,7 +13,7 @@ public class Customer {
     @Id
     private ObjectId id;
 
-    @NotNull
+    //@NotNull
     private ObjectId leaseId;
 
     @NotNull

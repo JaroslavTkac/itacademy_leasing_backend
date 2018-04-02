@@ -4,7 +4,6 @@ import lt.swedbank.itacademy.carleasing.beans.documents.CorporateCustomer;
 import lt.swedbank.itacademy.carleasing.beans.responses.CorporateCustomerResponse;
 import lt.swedbank.itacademy.carleasing.exceptions.NotFoundException;
 import lt.swedbank.itacademy.carleasing.repositories.CorporateCustomerRepository;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +26,7 @@ public class CorporateCustomerService {
     public CorporateCustomerResponse addNewCorporateCustomer(@Valid CorporateCustomer corporateCustomer) {
         CorporateCustomer newCorporateCustomer = new CorporateCustomer();
 
-        newCorporateCustomer.setId(new ObjectId());
+        newCorporateCustomer.setId(corporateCustomer.getId());
         newCorporateCustomer.setLeaseId(corporateCustomer.getLeaseId());
         newCorporateCustomer.setAddress(corporateCustomer.getAddress());
         newCorporateCustomer.setEmail(corporateCustomer.getEmail());
