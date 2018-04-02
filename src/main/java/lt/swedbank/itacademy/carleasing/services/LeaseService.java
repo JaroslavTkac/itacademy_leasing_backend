@@ -8,10 +8,10 @@ import lt.swedbank.itacademy.carleasing.beans.responses.PrivateCustomerResponse;
 import lt.swedbank.itacademy.carleasing.repositories.CorporateCustomerRepository;
 import lt.swedbank.itacademy.carleasing.repositories.LeaseRepository;
 import lt.swedbank.itacademy.carleasing.repositories.PrivateCustomerRepository;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,7 +28,7 @@ public class LeaseService {
     @Autowired
     private CorporateCustomerRepository corporateCustomerRepository;
 
-    public List<LeaseResponse> getAllLeasings() {
+    public List<LeaseResponse> getAllLeases() {
         return repository.findAll().stream().map(LeaseResponse::new).collect(Collectors.toList());
     }
 
@@ -56,9 +56,10 @@ public class LeaseService {
         return customerLeases;
     }
 
-    public Lease addNewLeasing(Lease lease) {
+    public LeaseResponse addNewLease(@Valid Lease lease) {
         Lease newLease = new Lease();
-        newLease.setId(new ObjectId());
+        //newLease.setCustomerId(new ObjectId());
+        newLease.setId(lease.getId());
         newLease.setAssetType(lease.getAssetType());
         newLease.setCarBrand(lease.getCarBrand());
         newLease.setCarModel(lease.getCarModel());
@@ -72,10 +73,11 @@ public class LeaseService {
         newLease.setContractFee(lease.getContractFee());
         newLease.setPaymentDate(lease.getPaymentDate());
 
-        return repository.save(newLease);
+        return new LeaseResponse(repository.save(newLease));
     }
 
 
-
-
+    public void deleteLease(String id) {
+        repository.delete(repository.findLeasingById(id));
+    }
 }

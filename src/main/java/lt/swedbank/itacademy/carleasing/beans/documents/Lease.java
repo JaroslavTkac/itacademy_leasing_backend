@@ -91,6 +91,28 @@ public class Lease {
 
     }
 
+    public Lease(ObjectId id, String leaseType, String assetType, String carBrand,
+                 String carModel, String years,
+                 int enginePower, BigDecimal assetPrice,
+                 float advancePaymentPercentage, BigDecimal advancePaymentAmount,
+                 int leasePeriod, float margin,
+                 BigDecimal contractFee, int paymentDate, String status) {
+        this.id = id;
+        this.leaseType = leaseType;
+        this.assetType = assetType;
+        this.carBrand = carBrand;
+        this.carModel = carModel;
+        this.years = years;
+        this.enginePower = enginePower;
+        this.assetPrice = assetPrice;
+        this.advancePaymentPercentage = advancePaymentPercentage;
+        this.advancePaymentAmount = advancePaymentAmount;
+        this.leasePeriod = leasePeriod;
+        this.margin = margin;
+        this.contractFee = contractFee;
+        this.paymentDate = paymentDate;
+        this.status = status;
+    }
 
     public ObjectId getId() {
         return id;

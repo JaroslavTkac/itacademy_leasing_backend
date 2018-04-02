@@ -25,8 +25,6 @@ public class CarsController {
     //GET
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Car> getAllCars() {
-        // carService.getModels
-        // carService.getBrands
         return carsService.getAllCars();
     }
 
@@ -39,7 +37,7 @@ public class CarsController {
 
 
     //GET
-    @RequestMapping(value = "/brand/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     public List<CarModelResponse> getAllModelsByBrand(@PathVariable("name") String brandName) {
         return carsService.getAllModelsByBrand(brandName);
     }

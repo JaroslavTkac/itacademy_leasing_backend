@@ -3,8 +3,8 @@ package lt.swedbank.itacademy.carleasing.beans.responses;
 import lt.swedbank.itacademy.carleasing.beans.documents.PrivateCustomer;
 
 public class PrivateCustomerResponse extends CustomerResponse {
-    private Object id;
-    private Object leaseId;
+    private String id;
+    private String leaseId;
     private String firstName;
     private String lastName;
     private String personalCode;
@@ -27,19 +27,19 @@ public class PrivateCustomerResponse extends CustomerResponse {
         return name.substring(0, 1).toUpperCase() + name.toLowerCase().substring(1);
     }
 
-    public Object getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Object getLeaseId() {
+    public String getLeaseId() {
         return leaseId;
     }
 
-    public void setLeaseId(Object leaseId) {
+    public void setLeaseId(String leaseId) {
         this.leaseId = leaseId;
     }
 

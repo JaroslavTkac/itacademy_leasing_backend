@@ -22,6 +22,7 @@ public class CorporateCustomerResponse extends CustomerResponse {
         setPhoneNumber(customer.getPhoneNumber());
     }
 
+
     public String getId() {
         return id;
     }

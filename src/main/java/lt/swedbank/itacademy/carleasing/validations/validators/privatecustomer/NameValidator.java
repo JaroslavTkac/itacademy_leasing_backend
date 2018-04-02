@@ -19,6 +19,7 @@ public class NameValidator implements
     }
 
     private boolean isValidName(String name) {
-        return name.matches("[a-zA-Z]{3,}");
+        return name.matches("[a-zA-Zàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšž" +
+                "ÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]{3,}");
     }
 }
