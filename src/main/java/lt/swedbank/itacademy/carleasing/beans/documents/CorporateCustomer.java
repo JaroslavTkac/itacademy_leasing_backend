@@ -1,33 +1,52 @@
 package lt.swedbank.itacademy.carleasing.beans.documents;
 
+import lt.swedbank.itacademy.carleasing.validations.constraints.corporatecustomer.CompanyCodeConstraint;
+import lt.swedbank.itacademy.carleasing.validations.constraints.corporatecustomer.CompanyNameConstraint;
 import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
+import javax.validation.constraints.NotNull;
 
 @Document(collection = "corporate_customers")
-public class CorporateCustomer {
-
-    @Id
-    private ObjectId id;
-
-    private List errorCodes;
+public class CorporateCustomer extends Customer{
 
 
-    public ObjectId getId() {
-        return id;
+    @NotNull
+    @CompanyNameConstraint
+    private String companyName;
+
+    @NotNull
+    @CompanyCodeConstraint
+    private String companyCode;
+
+    public CorporateCustomer(){
+
     }
 
-    public void setId(ObjectId id) {
-        this.id = id;
+    public CorporateCustomer(ObjectId id, ObjectId leaseId, String email, String phoneNumber, String address, String companyName, String companyCode) {
+        setId(id);
+        setLeaseId(leaseId);
+        setPhoneNumber(phoneNumber);
+        setEmail(email);
+        setAddress(address);
+        setCompanyCode(companyCode);
+        setCompanyName(companyName);
     }
 
-    public List getErrorCodes() {
-        return errorCodes;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setErrorCodes(List errorCodes) {
-        this.errorCodes = errorCodes;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
+
+    public String getCompanyCode() {
+        return companyCode;
+    }
+
+    public void setCompanyCode(String companyCode) {
+        this.companyCode = companyCode;
+    }
+
 }

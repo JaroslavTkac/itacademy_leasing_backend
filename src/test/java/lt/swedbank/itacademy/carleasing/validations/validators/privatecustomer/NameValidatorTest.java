@@ -24,6 +24,12 @@ public class NameValidatorTest {
     }
 
     @Test
+    public void isValidTestingNameWithLithuanianLetters() {
+        privateCustomer.setFirstName("Švytautaus");
+        assertEquals(true, validator.isValid(privateCustomer.getFirstName(), null));
+    }
+
+    @Test
     public void isValidTestingNameWithNumbers() {
         privateCustomer.setFirstName("Pe7r4Iti6");
         assertEquals(false, validator.isValid(privateCustomer.getFirstName(), null));

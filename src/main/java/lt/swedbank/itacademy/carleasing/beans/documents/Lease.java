@@ -9,13 +9,36 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.List;
 
+@AssetPriceCheck.List({
+        @AssetPriceCheck(
+                field = "assetPrice",
+                constraintField = "leaseType",
+                message = "Invalid Asset price"
+        )
+})
+@CalculationResultCheck.List({
+        @CalculationResultCheck(
+                field = "contractFee",
+                assetPrice = "assetPrice",
+                advancePaymentPercentage = "advancePaymentPercentage",
+                message = "Invalid contract fee"
+        ),
+        @CalculationResultCheck(
+                field = "advancePaymentAmount",
+                assetPrice = "assetPrice",
+                advancePaymentPercentage = "advancePaymentPercentage",
+                message = "Invalid advance payment amount"
+        )
+})
 @Document(collection = "leases")
 public class Lease {
 
     @Id
     private ObjectId id;
+
+    @NotNull
+    private String leaseType;
 
     @NotNull
     private String assetType;
@@ -37,7 +60,6 @@ public class Lease {
     private int enginePower;
 
     @NotNull
-    @AssetPriceConstraint
     private BigDecimal assetPrice;
 
     @NotNull
@@ -62,13 +84,35 @@ public class Lease {
     @PaymentDateConstraint
     private int paymentDate;
 
+    private String status;  //TODO validation in Sprint 3
 
-    private List errorCodes;
 
-    public Lease(){
+    public Lease() {
 
     }
 
+    public Lease(ObjectId id, String leaseType, String assetType, String carBrand,
+                 String carModel, String years,
+                 int enginePower, BigDecimal assetPrice,
+                 float advancePaymentPercentage, BigDecimal advancePaymentAmount,
+                 int leasePeriod, float margin,
+                 BigDecimal contractFee, int paymentDate, String status) {
+        this.id = id;
+        this.leaseType = leaseType;
+        this.assetType = assetType;
+        this.carBrand = carBrand;
+        this.carModel = carModel;
+        this.years = years;
+        this.enginePower = enginePower;
+        this.assetPrice = assetPrice;
+        this.advancePaymentPercentage = advancePaymentPercentage;
+        this.advancePaymentAmount = advancePaymentAmount;
+        this.leasePeriod = leasePeriod;
+        this.margin = margin;
+        this.contractFee = contractFee;
+        this.paymentDate = paymentDate;
+        this.status = status;
+    }
 
     public ObjectId getId() {
         return id;
@@ -76,6 +120,14 @@ public class Lease {
 
     public void setId(ObjectId id) {
         this.id = id;
+    }
+
+    public String getLeaseType() {
+        return leaseType;
+    }
+
+    public void setLeaseType(String leaseType) {
+        this.leaseType = leaseType;
     }
 
     public String getAssetType() {
@@ -174,11 +226,11 @@ public class Lease {
         this.paymentDate = paymentDate;
     }
 
-    public List getErrorCodes() {
-        return errorCodes;
+    public String getStatus() {
+        return status;
     }
 
-    public void setErrorCodes(List errorCodes) {
-        this.errorCodes = errorCodes;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

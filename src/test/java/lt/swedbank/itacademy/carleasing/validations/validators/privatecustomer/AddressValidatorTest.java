@@ -30,6 +30,12 @@ public class AddressValidatorTest {
     }
 
     @Test
+    public void isValidTestingAddressWithLithuanianLetters() {
+        privateCustomer.setAddress("Švytrigailos pr. 9");
+        assertEquals(true, validator.isValid(privateCustomer.getAddress(), null));
+    }
+
+    @Test
     public void isValidTestingAddressWithoutStreetNumber() {
         privateCustomer.setAddress("Gostauto g.");
         assertEquals(false, validator.isValid(privateCustomer.getAddress(), null));

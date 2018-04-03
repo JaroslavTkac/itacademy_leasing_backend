@@ -8,4 +8,6 @@ import java.util.List;
 public interface PrivateCustomerRepository extends CrudRepository<PrivateCustomer, String> {
 
     List<PrivateCustomer> findAll();
+
+    PrivateCustomer findPrivateCustomerById(String id);
 }

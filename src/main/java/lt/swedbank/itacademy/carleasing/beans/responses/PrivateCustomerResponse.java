@@ -2,19 +2,15 @@ package lt.swedbank.itacademy.carleasing.beans.responses;
 
 import lt.swedbank.itacademy.carleasing.beans.documents.PrivateCustomer;
 
-import java.util.List;
-
-public class PrivateCustomerResponse extends Response {
-    private Object id;
-    private Object leaseId;
+public class PrivateCustomerResponse extends CustomerResponse {
+    private String id;
+    private String leaseId;
     private String firstName;
     private String lastName;
     private String personalCode;
     private String email;
     private String phoneNumber;
     private String address;
-    private List errorCodes;
-
 
     public PrivateCustomerResponse(PrivateCustomer privateCustomer){
         setId(String.valueOf(privateCustomer.getId()));
@@ -25,26 +21,25 @@ public class PrivateCustomerResponse extends Response {
         setPhoneNumber(privateCustomer.getPhoneNumber());
         setAddress(privateCustomer.getAddress());
         setPersonalCode(privateCustomer.getPersonalCode());
-        setErrorCodes(privateCustomer.getErrorCodes());
     }
 
     private String capitalizeFirstNameLetter(String name){
         return name.substring(0, 1).toUpperCase() + name.toLowerCase().substring(1);
     }
 
-    public Object getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Object getLeaseId() {
+    public String getLeaseId() {
         return leaseId;
     }
 
-    public void setLeaseId(Object leaseId) {
+    public void setLeaseId(String leaseId) {
         this.leaseId = leaseId;
     }
 
@@ -96,11 +91,4 @@ public class PrivateCustomerResponse extends Response {
         this.address = address;
     }
 
-    public List getErrorCodes() {
-        return errorCodes;
-    }
-
-    public void setErrorCodes(List errorCodes) {
-        this.errorCodes = errorCodes;
-    }
 }
