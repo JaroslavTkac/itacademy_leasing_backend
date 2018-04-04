@@ -10,35 +10,41 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(value = "/leasing")
+@RequestMapping(value = "/lease")
 public class LeaseController {
 
     @Autowired
-    private LeaseService leaseService;
+    private LeaseService service;
 
 
     //GET
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<LeaseResponse> getAllLeases() {
-        return leaseService.getAllLeases();
+        return service.getAllLeases();
     }
 
     //GET
-    @RequestMapping(value = "/get_detailed_leases", method = RequestMethod.GET)
+    @RequestMapping(value = "/detailed-leases", method = RequestMethod.GET)
     public List<CustomerLease> getAllLeasesWithCustomers() {
-        return leaseService.getAllLeasesWithCustomers();
+        return service.getAllLeasesWithCustomers();
     }
 
-    //ADD
-//    @RequestMapping(value = "/add", method = RequestMethod.POST)
-//    public LeaseResponse addNewLease(@Valid @RequestBody Lease lease) {
-//        return leaseService.addNewLease(lease);
-//    }
+    //GET
+    @RequestMapping(value = "/{id}/with-customer", method = RequestMethod.GET)
+    public CustomerLease getLeaseWithCustomer(@PathVariable("id") String leaseId){
+        return service.getLeaseWithCustomer(leaseId);
+    }
+
+    //PUT
+    @RequestMapping(value = "/{id}/status/{status}", method = RequestMethod.PUT)
+    public LeaseResponse updateStatus(@PathVariable("id") String leaseId, @PathVariable("status") String newStatus) {
+        return service.updateStatus(leaseId, newStatus);
+    }
 
     //DELETE
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    public void removeLease(@PathVariable("id") String id) {
-        leaseService.deleteLease(id);
+    public void removeLease(@PathVariable("id") String leaseId) {
+        service.deleteLease(leaseId);
     }
 
 

@@ -20,6 +20,7 @@ public class LeaseResponse extends Response {
     private BigDecimal contractFee;
     private int paymentDate;
     private String status;
+    private String applicationDate;
 
 
     public LeaseResponse(Lease lease){
@@ -38,6 +39,7 @@ public class LeaseResponse extends Response {
         setPaymentDate(lease.getPaymentDate());
         setAdvancePaymentAmount(lease.getAdvancePaymentAmount());
         setStatus(lease.getStatus());
+        setApplicationDate(lease.getApplicationDate());
     }
 
     public String getId() {
@@ -158,5 +160,13 @@ public class LeaseResponse extends Response {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getApplicationDate() {
+        return applicationDate;
+    }
+
+    public void setApplicationDate(String applicationDate) {
+        this.applicationDate = applicationDate;
     }
 }

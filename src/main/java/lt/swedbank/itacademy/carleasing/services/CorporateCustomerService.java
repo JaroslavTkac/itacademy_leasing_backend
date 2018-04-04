@@ -38,30 +38,21 @@ public class CorporateCustomerService {
     }
 
     public CorporateCustomerResponse getCorporateCustomerById(String id) {
-        List<CorporateCustomerResponse> corporateCustomers = repository.findAll().stream()
-                .map(CorporateCustomerResponse::new)
-                .collect(Collectors.toList());
+        CorporateCustomer customer = repository.findCorporateCustomersById(id);
 
-        for (CorporateCustomerResponse customer : corporateCustomers) {
-            if (customer.getId().equals(id)) {
-                return customer;
-            }
+        if (customer != null) {
+            return new CorporateCustomerResponse(customer);
         }
-        throw new NotFoundException("Sorry, but corporate customer with id: " + id + " do not present.");
+        throw new NotFoundException("Sorry, but corporate customer with id: " + id + " is not present.");
     }
 
     public void deleteCorporateCustomer(String id) {
-        List<CorporateCustomerResponse> corporateCustomers = repository.findAll().stream()
-                .map(CorporateCustomerResponse::new)
-                .collect(Collectors.toList());
+        CorporateCustomer customer = repository.findCorporateCustomersById(id);
 
-        for (CorporateCustomerResponse customer : corporateCustomers) {
-            if (customer.getId().equals(id)) {
-                repository.delete(repository.findCorporateCustomersById(id));
-            }
-            else{
-                throw new NotFoundException("Sorry, but corporate customer with id: " + id + " do not present.");
-            }
+        if (customer != null) {
+            repository.delete(customer);
+        } else {
+            throw new NotFoundException("Sorry, but corporate customer with id: " + id + " is not present.");
         }
 
     }

@@ -8,8 +8,8 @@ public class CustomerLease {
     private LeaseResponse lease;
 
     public CustomerLease(CustomerResponse customer, LeaseResponse lease) {
-        setLease(lease);
         setCustomer(customer);
+        setLease(lease);
     }
 
     public CustomerResponse getCustomer() {
