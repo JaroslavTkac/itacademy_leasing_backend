@@ -81,7 +81,7 @@ public class PrivateCustomerControllerTest {
 
         //when
         mockMvc.perform(
-                get("/private_customer")
+                get("/private-customer")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(5)))
@@ -104,7 +104,7 @@ public class PrivateCustomerControllerTest {
 
         //when
         MockHttpServletResponse response =  mockMvc.perform(
-                get("/private_customer")
+                get("/private-customer")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn().getResponse();
@@ -123,7 +123,7 @@ public class PrivateCustomerControllerTest {
 
         //when
         MockHttpServletResponse response = mockMvc.perform(
-                get("/private_customer/" + String.valueOf(id))
+                get("/private-customer/" + String.valueOf(id))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn().getResponse();
@@ -142,7 +142,7 @@ public class PrivateCustomerControllerTest {
 
         //when
         MockHttpServletResponse response = mockMvc.perform(
-                get("/private_customer/1" )
+                get("/private-customer/1" )
                         .contentType(MediaType.APPLICATION_JSON))
                 //then
                 .andExpect(status().isNotFound())
@@ -185,7 +185,7 @@ public class PrivateCustomerControllerTest {
     public void canDeleteCustomerById() throws Exception{
         //when
         mockMvc.perform(
-                delete("/private_customer/delete/" + String.valueOf(id))
+                delete("/private-customer/delete/" + String.valueOf(id))
                         .contentType(MediaType.APPLICATION_JSON))
                 //then
                 .andExpect(status().isOk())
