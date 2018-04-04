@@ -4,7 +4,7 @@ import lt.swedbank.itacademy.carleasing.beans.documents.CompleteLease;
 
 import java.math.BigDecimal;
 
-public class CompleteLeaseResponse {
+public class CompleteLeaseResponse extends Response{
     //lease
     private String leaseId;
     private String assetType;
@@ -21,6 +21,7 @@ public class CompleteLeaseResponse {
     private BigDecimal contractFee;
     private int paymentDate;
     private String status;
+    private String applicationDate;
 
     //customer
     private String customerId;
@@ -55,6 +56,7 @@ public class CompleteLeaseResponse {
         setPaymentDate(completeLease.getLease().getPaymentDate());
         setAdvancePaymentAmount(completeLease.getLease().getAdvancePaymentAmount());
         setStatus(completeLease.getLease().getStatus());
+        setApplicationDate(completeLease.getLease().getApplicationDate());
 
         if(completeLease.getPrivateCustomer() != null){
             setCustomerId(String.valueOf(completeLease.getPrivateCustomer().getId()));
@@ -195,6 +197,14 @@ public class CompleteLeaseResponse {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getApplicationDate() {
+        return applicationDate;
+    }
+
+    public void setApplicationDate(String applicationDate) {
+        this.applicationDate = applicationDate;
     }
 
     public String getCustomerId() {
