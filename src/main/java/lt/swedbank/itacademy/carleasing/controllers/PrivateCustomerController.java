@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(value = "/private_customer")
+@RequestMapping(value = "/private-customer")
 public class PrivateCustomerController {
 
 

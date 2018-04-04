@@ -22,16 +22,12 @@ public class PrivateCustomerService {
     }
 
     public PrivateCustomerResponse getPrivateCustomerById(String id) {
-        List<PrivateCustomerResponse> privateCustomers = repository.findAll().stream()
-                .map(PrivateCustomerResponse::new)
-                .collect(Collectors.toList());
+        PrivateCustomer customer = repository.findPrivateCustomerById(id);
 
-        for (PrivateCustomerResponse currentPrivateCustomer : privateCustomers) {
-            if (currentPrivateCustomer.getId().equals(id)) {
-                return currentPrivateCustomer;
-            }
+        if (customer != null) {
+            return new PrivateCustomerResponse(customer);
         }
-        throw new NotFoundException("Sorry, but private customer with id: " + id + " do not present.");
+        throw new NotFoundException("Sorry, but private customer with id: " + id + " is not present.");
     }
 
     public PrivateCustomerResponse addNewPrivateCustomer(PrivateCustomer privateCustomer) {
@@ -50,19 +46,13 @@ public class PrivateCustomerService {
     }
 
 
-    public void removePrivateCustomer(String id){
-        List<PrivateCustomerResponse> corporateCustomers = repository.findAll().stream()
-                .map(PrivateCustomerResponse::new)
-                .collect(Collectors.toList());
+    public void removePrivateCustomer(String id) {
+        PrivateCustomer customer = repository.findPrivateCustomerById(id);
 
-        for (PrivateCustomerResponse customer : corporateCustomers) {
-            if (customer.getId().equals(id)) {
-                repository.delete(repository.findPrivateCustomerById(id));
-            }
-            else {
-                throw new NotFoundException("Sorry, but private customer with id: " + id + " do not present.");
-            }
+        if (customer != null) {
+            repository.delete(customer);
+        } else {
+            throw new NotFoundException("Sorry, but private customer with id: " + id + " is not present.");
         }
-
     }
 }

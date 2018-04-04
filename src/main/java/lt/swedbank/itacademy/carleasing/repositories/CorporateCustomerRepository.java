@@ -10,4 +10,6 @@ public interface CorporateCustomerRepository extends CrudRepository<CorporateCus
     List<CorporateCustomer> findAll();
 
     CorporateCustomer findCorporateCustomersById(String id);
+
+    CorporateCustomer findCorporateCustomersByLeaseId(String id);
 }

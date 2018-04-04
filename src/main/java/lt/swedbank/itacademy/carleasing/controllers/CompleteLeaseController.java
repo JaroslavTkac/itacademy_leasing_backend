@@ -10,7 +10,7 @@ import javax.validation.Valid;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(value = "/lease")
+@RequestMapping(value = "/complete-lease")
 public class CompleteLeaseController {
 
     @Autowired
