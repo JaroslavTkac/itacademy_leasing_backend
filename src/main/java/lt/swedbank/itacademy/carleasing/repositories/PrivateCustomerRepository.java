@@ -10,4 +10,7 @@ public interface PrivateCustomerRepository extends CrudRepository<PrivateCustome
     List<PrivateCustomer> findAll();
 
     PrivateCustomer findPrivateCustomerById(String id);
+
+    PrivateCustomer findPrivateCustomersByLeaseId(String id);
+
 }

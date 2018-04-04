@@ -2,11 +2,7 @@ package lt.swedbank.itacademy.carleasing.beans.documents;
 
 
 import lt.swedbank.itacademy.carleasing.validations.constraints.lease.*;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
@@ -31,33 +27,10 @@ import java.math.BigDecimal;
                 message = "Invalid advance payment amount"
         )
 })
-@Document(collection = "leases")
-public class Lease {
-
-    @Id
-    private ObjectId id;
+public class ScheduleOfContributions {
 
     @NotNull
     private String leaseType;
-
-    @NotNull
-    private String assetType;
-
-    @NotNull
-    @NotEmpty
-    private String carBrand;
-
-    @NotNull
-    @NotEmpty
-    private String carModel;
-
-    @NotNull
-    @YearsConstraint
-    private String years;
-
-    @NotNull
-    @EnginePowerConstraint
-    private int enginePower;
 
     @NotNull
     private BigDecimal assetPrice;
@@ -84,44 +57,9 @@ public class Lease {
     @PaymentDateConstraint
     private int paymentDate;
 
-    private String status;
 
-    private String applicationDate;
+    public ScheduleOfContributions() {
 
-
-    public Lease() {
-    }
-
-    public Lease(ObjectId id, String leaseType, String assetType, String carBrand,
-                 String carModel, String years,
-                 int enginePower, BigDecimal assetPrice,
-                 float advancePaymentPercentage, BigDecimal advancePaymentAmount,
-                 int leasePeriod, float margin,
-                 BigDecimal contractFee, int paymentDate, String status) {
-        this.id = id;
-        this.leaseType = leaseType;
-        this.assetType = assetType;
-        this.carBrand = carBrand;
-        this.carModel = carModel;
-        this.years = years;
-        this.enginePower = enginePower;
-        this.assetPrice = assetPrice;
-        this.advancePaymentPercentage = advancePaymentPercentage;
-        this.advancePaymentAmount = advancePaymentAmount;
-        this.leasePeriod = leasePeriod;
-        this.margin = margin;
-        this.contractFee = contractFee;
-        this.paymentDate = paymentDate;
-        this.status = status;
-        //this.creationDate = new Date();
-    }
-
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
     }
 
     public String getLeaseType() {
@@ -130,46 +68,6 @@ public class Lease {
 
     public void setLeaseType(String leaseType) {
         this.leaseType = leaseType;
-    }
-
-    public String getAssetType() {
-        return assetType;
-    }
-
-    public void setAssetType(String assetType) {
-        this.assetType = assetType;
-    }
-
-    public String getCarBrand() {
-        return carBrand;
-    }
-
-    public void setCarBrand(String carBrand) {
-        this.carBrand = carBrand;
-    }
-
-    public String getCarModel() {
-        return carModel;
-    }
-
-    public void setCarModel(String carModel) {
-        this.carModel = carModel;
-    }
-
-    public String getYears() {
-        return years;
-    }
-
-    public void setYears(String years) {
-        this.years = years;
-    }
-
-    public int getEnginePower() {
-        return enginePower;
-    }
-
-    public void setEnginePower(int enginePower) {
-        this.enginePower = enginePower;
     }
 
     public BigDecimal getAssetPrice() {
@@ -226,21 +124,5 @@ public class Lease {
 
     public void setPaymentDate(int paymentDate) {
         this.paymentDate = paymentDate;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getApplicationDate() {
-        return applicationDate;
-    }
-
-    public void setApplicationDate(String applicationDate) {
-        this.applicationDate = applicationDate;
     }
 }
