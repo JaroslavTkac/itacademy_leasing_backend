@@ -64,6 +64,7 @@ public class LeaseService {
         Lease newLease = new Lease();
         //newLease.setCustomerId(new ObjectId());
         newLease.setId(lease.getId());
+        newLease.setLeaseType(lease.getLeaseType());
         newLease.setAssetType(lease.getAssetType());
         newLease.setCarBrand(lease.getCarBrand());
         newLease.setCarModel(lease.getCarModel());
