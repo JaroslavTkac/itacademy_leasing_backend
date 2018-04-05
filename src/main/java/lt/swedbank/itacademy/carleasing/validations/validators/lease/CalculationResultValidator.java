@@ -38,13 +38,13 @@ public class CalculationResultValidator
                 valueToExpect = 200;
             }
 
-            return (Math.round(realValue * 100.0) / 100.0) == valueToExpect;
+            return Math.abs(realValue - valueToExpect) <= 1;
         }
         if (field.equals("advancePaymentAmount")) {
             double valueToExpect = assetPrice / 100;
             valueToExpect *= percents;
 
-            return (Math.round(realValue * 100.0) / 100.0) == valueToExpect;
+            return Math.abs(realValue - valueToExpect) <= 1;
         }
         return false;
     }

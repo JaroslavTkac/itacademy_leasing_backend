@@ -21,7 +21,6 @@ public class ScheduleOfContributionsService {
         List<ScheduleOfContributionsPaymentData> paymentData = new ArrayList<>();
 
         BigDecimal notRedeemedAssetValue = schedule.getAssetPrice().subtract(schedule.getAdvancePaymentAmount());
-
         BigDecimal r = new BigDecimal((schedule.getMargin() / 100) / 12)
                 .round(new MathContext(16, RoundingMode.HALF_UP));
 
@@ -47,7 +46,6 @@ public class ScheduleOfContributionsService {
 
 
         BigDecimal totalMonthlyPaymentValue = notRedeemedAssetValue.divide(denominator, 16, RoundingMode.HALF_UP);
-
         BigDecimal interest = BigDecimal.ONE.add
                 (
                         new BigDecimal((schedule.getMargin() / 100) / 12)
@@ -58,18 +56,19 @@ public class ScheduleOfContributionsService {
         BigDecimal paymentWithInterest = notRedeemedAssetValue.multiply(interest)
                 .round(new MathContext(16, RoundingMode.HALF_UP));
 
-
         BigDecimal interestPayments = paymentWithInterest.subtract(notRedeemedAssetValue);
-
         BigDecimal assetRedemptionFees = totalMonthlyPaymentValue.subtract(interestPayments);
-
         BigDecimal newNotRedeemedAssetValue = notRedeemedAssetValue.subtract(assetRedemptionFees);
 
         paymentData.add(new ScheduleOfContributionsPaymentData(
-                notRedeemedAssetValue,
-                assetRedemptionFees,
-                interestPayments,
+                notRedeemedAssetValue
+                        .setScale(2, RoundingMode.HALF_UP),
+                assetRedemptionFees
+                        .setScale(2, RoundingMode.HALF_UP),
+                interestPayments
+                        .setScale(2, RoundingMode.HALF_UP),
                 totalMonthlyPaymentValue
+                        .setScale(2, RoundingMode.HALF_UP)
                 ));
 
         for (int i = 0; i < schedule.getLeasePeriod() - 1; i++){
@@ -94,10 +93,14 @@ public class ScheduleOfContributionsService {
                     .round(new MathContext(16, RoundingMode.HALF_UP));
 
             paymentData.add(new ScheduleOfContributionsPaymentData(
-                    notRedeemedAssetValue,
-                    assetRedemptionFees,
-                    interestPayments,
+                    notRedeemedAssetValue
+                            .setScale(2, RoundingMode.HALF_UP),
+                    assetRedemptionFees
+                            .setScale(2, RoundingMode.HALF_UP),
+                    interestPayments
+                            .setScale(2, RoundingMode.HALF_UP),
                     totalMonthlyPaymentValue
+                            .setScale(2, RoundingMode.HALF_UP)
             ));
         }
 
