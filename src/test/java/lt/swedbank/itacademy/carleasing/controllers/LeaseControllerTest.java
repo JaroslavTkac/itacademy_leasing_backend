@@ -76,7 +76,7 @@ public class LeaseControllerTest {
 
         //when
         mockMvc.perform(
-                get("/leasing")
+                get("/lease")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(5)))
@@ -120,7 +120,7 @@ public class LeaseControllerTest {
     public void canDeleteLeaseById() throws Exception{
         //when
         MockHttpServletResponse response = mockMvc.perform(
-                delete("/leasing/delete/" + String.valueOf(new ObjectId()))
+                delete("/lease/delete/" + String.valueOf(new ObjectId()))
                         .contentType(MediaType.APPLICATION_JSON))
                 //then
                 .andExpect(status().isOk())

@@ -81,7 +81,7 @@ public class CorporateCustomerControllerTest {
         when(controller.getAllCorporateCustomers()).thenReturn(customers);
 
         mockMvc.perform(
-                get("/corporate_customer")
+                get("/corporate-customer")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(5)))
@@ -104,7 +104,7 @@ public class CorporateCustomerControllerTest {
 
         //when
         MockHttpServletResponse response =  mockMvc.perform(
-                get("/corporate_customer")
+                get("/corporate-customer")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn().getResponse();
@@ -123,7 +123,7 @@ public class CorporateCustomerControllerTest {
 
         //when
         MockHttpServletResponse response = mockMvc.perform(
-                get("/corporate_customer/" + String.valueOf(id))
+                get("/corporate-customer/" + String.valueOf(id))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn().getResponse();
@@ -141,7 +141,7 @@ public class CorporateCustomerControllerTest {
 
         //when
         mockMvc.perform(
-                get("/corporate_customer/" + String.valueOf(new ObjectId()))
+                get("/corporate-customer/" + String.valueOf(new ObjectId()))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound())
                 .andReturn().getResponse();
@@ -184,7 +184,7 @@ public class CorporateCustomerControllerTest {
     public void canDeleteCustomerById() throws Exception{
         //when
         MockHttpServletResponse response = mockMvc.perform(
-                delete("/corporate_customer/delete/" + String.valueOf(id))
+                delete("/corporate-customer/delete/" + String.valueOf(id))
                         .contentType(MediaType.APPLICATION_JSON))
                 //then
                 .andExpect(status().isOk())
