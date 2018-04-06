@@ -68,4 +68,17 @@ public class Customer {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public String formatPhoneNumber(String phoneNumber){
+        if(phoneNumber.substring(0, 4).equals("+370")){
+            return phoneNumber;
+        }
+        if(phoneNumber.substring(0, 4).equals("370")){
+            return "+" + phoneNumber;
+        }
+        if(phoneNumber.charAt(0) == '8'){
+            return "+370" + phoneNumber.substring(1);
+        }
+        return "";
+    }
 }

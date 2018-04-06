@@ -32,7 +32,7 @@ public class CorporateCustomerService {
         newCorporateCustomer.setEmail(corporateCustomer.getEmail());
         newCorporateCustomer.setCompanyCode(corporateCustomer.getCompanyCode());
         newCorporateCustomer.setCompanyName(corporateCustomer.getCompanyName());
-        newCorporateCustomer.setPhoneNumber(corporateCustomer.getPhoneNumber());
+        newCorporateCustomer.setPhoneNumber(corporateCustomer.formatPhoneNumber(corporateCustomer.getPhoneNumber()));
 
         return new CorporateCustomerResponse(repository.save(newCorporateCustomer));
     }

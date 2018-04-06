@@ -62,7 +62,6 @@ public class LeaseService {
 
     public LeaseResponse addNewLease(@Valid Lease lease) {
         Lease newLease = new Lease();
-        //newLease.setCustomerId(new ObjectId());
         newLease.setId(lease.getId());
         newLease.setLeaseType(lease.getLeaseType());
         newLease.setAssetType(lease.getAssetType());
@@ -101,7 +100,7 @@ public class LeaseService {
         }
 
         if (newStatus.toLowerCase().equals("accepted") || newStatus.toLowerCase().equals("rejected")) {
-            leaseToUpdate.setStatus(newStatus);
+            leaseToUpdate.setStatus(newStatus.substring(0,1).toUpperCase() + newStatus.substring(1).toLowerCase());
             return new LeaseResponse(repository.save(leaseToUpdate));
         } else {
             throw new IllegalParameterException("Illegal status parameter found.");

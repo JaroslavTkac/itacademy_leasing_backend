@@ -40,7 +40,7 @@ public class PrivateCustomerService {
         newPrivateCustomer.setFirstName(privateCustomer.getFirstName());
         newPrivateCustomer.setLastName(privateCustomer.getLastName());
         newPrivateCustomer.setPersonalCode(privateCustomer.getPersonalCode());
-        newPrivateCustomer.setPhoneNumber(privateCustomer.getPhoneNumber());
+        newPrivateCustomer.setPhoneNumber(privateCustomer.formatPhoneNumber(privateCustomer.getPhoneNumber()));
 
         return new PrivateCustomerResponse(repository.save(newPrivateCustomer));
     }
