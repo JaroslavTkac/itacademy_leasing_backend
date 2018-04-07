@@ -44,13 +44,13 @@ public class CarsController {
 
 
     //POST
-    @RequestMapping(value = "/initcars", method = RequestMethod.POST)
-    public String initMongoDataBaseWithDefaultCars() {
-        //1 Wiping all current data
-        carsService.wipeAllData();
-        //2 Pushing data to db
-        carsService.initializeCars();
-
-        return "{\n\"status\": \"OK\"\n}";
-    }
+//    @RequestMapping(value = "/initcars", method = RequestMethod.POST)
+//    public String initMongoDataBaseWithDefaultCars() {
+//        //1 Wiping all current data
+//        carsService.wipeAllData();
+//        //2 Pushing data to db
+//        carsService.initializeCars();
+//
+//        return "{\n\"status\": \"OK\"\n}";
+//    }
 }

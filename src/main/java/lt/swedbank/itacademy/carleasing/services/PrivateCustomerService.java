@@ -55,4 +55,6 @@ public class PrivateCustomerService {
             throw new NotFoundException("Sorry, but private customer with id: " + id + " is not present.");
         }
     }
+
+
 }

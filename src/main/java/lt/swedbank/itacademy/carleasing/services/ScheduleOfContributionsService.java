@@ -16,7 +16,6 @@ import java.util.List;
 @Service
 public class ScheduleOfContributionsService {
 
-
     public ScheduleOfContributionsResponse calculateScheduleOfContributions(@Valid ScheduleOfContributions schedule) {
         List<ScheduleOfContributionsPaymentData> paymentData = new ArrayList<>();
 

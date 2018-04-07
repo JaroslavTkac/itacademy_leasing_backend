@@ -39,6 +39,6 @@ public class CorporateCustomerController {
     //DELETE
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public void removeCorporateCustomer(@PathVariable("id") String id) {
-        corporateCustomerService.deleteCorporateCustomer(id);
+        corporateCustomerService.removeCorporateCustomer(id);
     }
 }
