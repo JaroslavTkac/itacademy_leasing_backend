@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 @Service
 public class CorporateCustomerService {
 
-
     @Autowired
     private CorporateCustomerRepository repository;
 
@@ -46,7 +45,7 @@ public class CorporateCustomerService {
         throw new NotFoundException("Sorry, but corporate customer with id: " + id + " is not present.");
     }
 
-    public void deleteCorporateCustomer(String id) {
+    public void removeCorporateCustomer(String id) {
         CorporateCustomer customer = repository.findCorporateCustomersById(id);
 
         if (customer != null) {

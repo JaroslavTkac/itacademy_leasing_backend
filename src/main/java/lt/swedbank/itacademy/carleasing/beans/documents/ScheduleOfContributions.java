@@ -62,6 +62,20 @@ public class ScheduleOfContributions {
 
     }
 
+    public ScheduleOfContributions(String leaseType, BigDecimal assetPrice,
+                                   float advancePaymentPercentage, BigDecimal advancePaymentAmount,
+                                   int leasePeriod, float margin,
+                                   BigDecimal contractFee, int paymentDate) {
+        this.leaseType = leaseType;
+        this.assetPrice = assetPrice;
+        this.advancePaymentPercentage = advancePaymentPercentage;
+        this.advancePaymentAmount = advancePaymentAmount;
+        this.leasePeriod = leasePeriod;
+        this.margin = margin;
+        this.contractFee = contractFee;
+        this.paymentDate = paymentDate;
+    }
+
     public String getLeaseType() {
         return leaseType;
     }

@@ -11,10 +11,19 @@ public class CompleteLease {
     @Valid
     private CorporateCustomer corporateCustomer;
 
-    public CompleteLease(){
+    public CompleteLease() {
 
     }
 
+    public CompleteLease(@Valid Lease lease, @Valid PrivateCustomer privateCustomer) {
+        setLease(lease);
+        setPrivateCustomer(privateCustomer);
+    }
+
+    public CompleteLease(@Valid Lease lease, @Valid CorporateCustomer corporateCustomer) {
+        setLease(lease);
+        setCorporateCustomer(corporateCustomer);
+    }
 
     public Lease getLease() {
         return lease;

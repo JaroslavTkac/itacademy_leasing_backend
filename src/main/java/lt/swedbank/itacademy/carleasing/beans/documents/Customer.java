@@ -73,7 +73,7 @@ public class Customer {
         if(phoneNumber.substring(0, 4).equals("+370")){
             return phoneNumber;
         }
-        if(phoneNumber.substring(0, 4).equals("370")){
+        if(phoneNumber.substring(0, 3).equals("370")){
             return "+" + phoneNumber;
         }
         if(phoneNumber.charAt(0) == '8'){

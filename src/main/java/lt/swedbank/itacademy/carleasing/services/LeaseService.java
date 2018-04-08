@@ -87,7 +87,6 @@ public class LeaseService {
         return new LeaseResponse(repository.save(newLease));
     }
 
-
     public void deleteLease(String leaseId) {
         repository.delete(repository.findLeasingById(leaseId));
     }
@@ -110,6 +109,10 @@ public class LeaseService {
     public CustomerLease getLeaseWithCustomer(String leaseId) {
         CustomerLease customerLease;
         Lease lease = repository.findLeasingById(leaseId);
+
+        if(lease == null){
+            throw new NotFoundException("Sorry, but lease with id: " + leaseId + " is not present.");
+        }
        
         List<PrivateCustomerResponse> privateCustomers = privateCustomerRepository.findAll().stream()
                 .map(PrivateCustomerResponse::new)
@@ -133,6 +136,6 @@ public class LeaseService {
             }
         }
 
-        throw new NotFoundException("Sorry, but lease with id: " + leaseId + " is not present.");
+        throw new NotFoundException("Sorry, but lease with id: " + leaseId + " do not have any customer.");
     }
 }
