@@ -4,15 +4,15 @@ import java.math.BigDecimal;
 
 public class ScheduleOfContributionsPaymentData {
 
-    private BigDecimal notRedeemedAssetValue;
-    private BigDecimal assetRedemptionFees;
-    private BigDecimal interestPayments;
-    private BigDecimal totalMonthlyPaymentValue;
+    private BigDecimal notRedeemedAssetValue; //Neispirkta turto verte
+    private BigDecimal assetRedemptionFees; //Turto ispirkimo imokos
+    private BigDecimal interestPayments; //Palukanu imokos
+    private BigDecimal totalMonthlyPaymentValue; // Is Viso
 
 
     public ScheduleOfContributionsPaymentData(BigDecimal notRedeemedAssetValue, BigDecimal assetRedemptionFees,
                                               BigDecimal interestPayments, BigDecimal totalMonthlyPaymentValue) {
-        setAssetRedemptionFees(notRedeemedAssetValue);
+        setNotRedeemedAssetValue(notRedeemedAssetValue);
         setAssetRedemptionFees(assetRedemptionFees);
         setInterestPayments(interestPayments);
         setTotalMonthlyPaymentValue(totalMonthlyPaymentValue);

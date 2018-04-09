@@ -19,7 +19,7 @@ public class ScheduleOfContributionsController {
 
     //POST
     @RequestMapping(value = "/post", method = RequestMethod.POST)
-    public ScheduleOfContributionsResponse addNewLease(@Valid @RequestBody ScheduleOfContributions schedule) {
+    public ScheduleOfContributionsResponse calculateSchedulePayments(@Valid @RequestBody ScheduleOfContributions schedule) {
         return service.calculateScheduleOfContributions(schedule);
     }
 }

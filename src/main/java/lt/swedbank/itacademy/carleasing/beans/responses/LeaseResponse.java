@@ -25,7 +25,7 @@ public class LeaseResponse extends Response {
 
     public LeaseResponse(Lease lease){
         setId(String.valueOf(lease.getId()));
-        setLeaseType(String.valueOf(lease.getLeaseType()));
+        setLeaseType(lease.getLeaseType());
         setAssetType(lease.getAssetType());
         setCarBrand(lease.getCarBrand());
         setCarModel(lease.getCarModel());

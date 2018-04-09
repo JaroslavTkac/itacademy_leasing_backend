@@ -62,8 +62,8 @@ public class LeaseService {
 
     public LeaseResponse addNewLease(@Valid Lease lease) {
         Lease newLease = new Lease();
-        //newLease.setCustomerId(new ObjectId());
         newLease.setId(lease.getId());
+        newLease.setLeaseType(lease.getLeaseType());
         newLease.setAssetType(lease.getAssetType());
         newLease.setCarBrand(lease.getCarBrand());
         newLease.setCarModel(lease.getCarModel());
@@ -87,7 +87,6 @@ public class LeaseService {
         return new LeaseResponse(repository.save(newLease));
     }
 
-
     public void deleteLease(String leaseId) {
         repository.delete(repository.findLeasingById(leaseId));
     }
@@ -100,7 +99,7 @@ public class LeaseService {
         }
 
         if (newStatus.toLowerCase().equals("accepted") || newStatus.toLowerCase().equals("rejected")) {
-            leaseToUpdate.setStatus(newStatus);
+            leaseToUpdate.setStatus(newStatus.substring(0,1).toUpperCase() + newStatus.substring(1).toLowerCase());
             return new LeaseResponse(repository.save(leaseToUpdate));
         } else {
             throw new IllegalParameterException("Illegal status parameter found.");
@@ -110,6 +109,10 @@ public class LeaseService {
     public CustomerLease getLeaseWithCustomer(String leaseId) {
         CustomerLease customerLease;
         Lease lease = repository.findLeasingById(leaseId);
+
+        if(lease == null){
+            throw new NotFoundException("Sorry, but lease with id: " + leaseId + " is not present.");
+        }
        
         List<PrivateCustomerResponse> privateCustomers = privateCustomerRepository.findAll().stream()
                 .map(PrivateCustomerResponse::new)
@@ -133,6 +136,6 @@ public class LeaseService {
             }
         }
 
-        throw new NotFoundException("Sorry, but lease with id: " + leaseId + " is not present.");
+        throw new NotFoundException("Sorry, but lease with id: " + leaseId + " do not have any customer.");
     }
 }

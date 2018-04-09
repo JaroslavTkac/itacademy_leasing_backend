@@ -40,7 +40,7 @@ public class PrivateCustomerService {
         newPrivateCustomer.setFirstName(privateCustomer.getFirstName());
         newPrivateCustomer.setLastName(privateCustomer.getLastName());
         newPrivateCustomer.setPersonalCode(privateCustomer.getPersonalCode());
-        newPrivateCustomer.setPhoneNumber(privateCustomer.getPhoneNumber());
+        newPrivateCustomer.setPhoneNumber(privateCustomer.formatPhoneNumber(privateCustomer.getPhoneNumber()));
 
         return new PrivateCustomerResponse(repository.save(newPrivateCustomer));
     }
@@ -55,4 +55,6 @@ public class PrivateCustomerService {
             throw new NotFoundException("Sorry, but private customer with id: " + id + " is not present.");
         }
     }
+
+
 }
