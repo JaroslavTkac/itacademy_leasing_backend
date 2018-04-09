@@ -49,7 +49,7 @@ public class CompleteLeaseService {
         mail.setFrom("majestic.car.leasing@gmail.com");
         mail.setTo(userEmail);
         mail.setSubject("Majestic car lease ID");
-        mail.setContent("Your lease ID: " + leaseId + "\nWith this ID you can information and status of your lease.\n\nSincerely, Majestic Leasing");
+        mail.setContent("Your lease ID: " + leaseId + "\nWith this ID you can check information and status of your lease.\n\nSincerely, Majestic Leasing");
 
         emailService.sendSimpleMessage(mail);
     }
