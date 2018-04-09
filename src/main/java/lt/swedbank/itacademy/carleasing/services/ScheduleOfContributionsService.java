@@ -19,6 +19,16 @@ public class ScheduleOfContributionsService {
     public ScheduleOfContributionsResponse calculateScheduleOfContributions(@Valid ScheduleOfContributions schedule) {
         List<ScheduleOfContributionsPaymentData> paymentData = new ArrayList<>();
 
+        paymentData.add(new ScheduleOfContributionsPaymentData(
+                schedule.getAssetPrice()
+                        .setScale(2, RoundingMode.HALF_UP),
+                schedule.getAdvancePaymentAmount()
+                        .setScale(2, RoundingMode.HALF_UP),
+                BigDecimal.ZERO,
+                (schedule.getAdvancePaymentAmount().add(schedule.getContractFee()))
+                        .setScale(2, RoundingMode.HALF_UP)
+        ));
+
         BigDecimal notRedeemedAssetValue = schedule.getAssetPrice().subtract(schedule.getAdvancePaymentAmount());
         BigDecimal r = new BigDecimal((schedule.getMargin() / 100) / 12)
                 .round(new MathContext(16, RoundingMode.HALF_UP));
@@ -103,8 +113,18 @@ public class ScheduleOfContributionsService {
             ));
         }
 
+        setIndexesForSchedulePayments(paymentData);
+
         return new ScheduleOfContributionsResponse(paymentData);
     }
 
+
+    public void setIndexesForSchedulePayments(List<ScheduleOfContributionsPaymentData> paymentData){
+        int i = 1;
+        for (ScheduleOfContributionsPaymentData payment: paymentData) {
+            payment.setIndex(i);
+            i++;
+        }
+    }
 
 }
