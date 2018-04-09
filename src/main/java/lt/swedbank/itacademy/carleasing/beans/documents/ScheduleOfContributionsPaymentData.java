@@ -4,7 +4,8 @@ import java.math.BigDecimal;
 
 public class ScheduleOfContributionsPaymentData {
 
-    private int index;
+    private String index;
+    private String contractFee;
     private BigDecimal notRedeemedAssetValue; //Neispirkta turto verte
     private BigDecimal assetRedemptionFees; //Turto ispirkimo imokos
     private BigDecimal interestPayments; //Palukanu imokos
@@ -17,14 +18,23 @@ public class ScheduleOfContributionsPaymentData {
         setAssetRedemptionFees(assetRedemptionFees);
         setInterestPayments(interestPayments);
         setTotalMonthlyPaymentValue(totalMonthlyPaymentValue);
+        setContractFee("");
     }
 
-    public int getIndex() {
+    public String getIndex() {
         return index;
     }
 
-    public void setIndex(int index) {
+    public void setIndex(String index) {
         this.index = index;
+    }
+
+    public String getContractFee() {
+        return contractFee;
+    }
+
+    public void setContractFee(String contractFee) {
+        this.contractFee = contractFee;
     }
 
     public BigDecimal getNotRedeemedAssetValue() {

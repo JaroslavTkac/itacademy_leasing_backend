@@ -113,18 +113,20 @@ public class ScheduleOfContributionsService {
             ));
         }
 
-        setIndexesForSchedulePayments(paymentData);
+        setIndexesForSchedulePayments(paymentData, schedule);
 
         return new ScheduleOfContributionsResponse(paymentData);
     }
 
 
-    public void setIndexesForSchedulePayments(List<ScheduleOfContributionsPaymentData> paymentData){
-        int i = 1;
+    private void setIndexesForSchedulePayments(List<ScheduleOfContributionsPaymentData> paymentData, ScheduleOfContributions schedule){
+        int i = 0;
         for (ScheduleOfContributionsPaymentData payment: paymentData) {
-            payment.setIndex(i);
+            payment.setIndex(String.valueOf(i));
             i++;
         }
+        paymentData.get(0).setIndex("");
+        paymentData.get(0).setContractFee(String.valueOf(schedule.getContractFee()));
     }
 
 }
